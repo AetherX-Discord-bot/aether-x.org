@@ -15,33 +15,37 @@
         /* Body Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-color, #f9f9f9);
-            color: var(--text-color, #333);
+            background: var(--background);
+            color: var(--text-color);
             line-height: 1.8;
             margin: 20px;
         }
 
-        /* Light and Dark Mode Variables */
         :root {
-            --bg-color-light: #f9f9f9;
-            --text-color-light: #333;
-            --bg-color-dark: #121212;
-            --text-color-dark: #f1f1f1;
+            --background: linear-gradient(to bottom, #f9f9f9, #e6e6e6);
+            --text-color: #333;
+            --heading-color: #222;
+            --link-color: #007BFF;
+            --pre-background: #2c3e50;
+            --pre-color: #ecf0f1;
+            --table-header: #f8f9fa;
+            --table-row-alt: #f2f2f2;
         }
 
-        body.light-mode {
-            --bg-color: var(--bg-color-light);
-            --text-color: var(--text-color-light);
-        }
-
-        body.dark-mode {
-            --bg-color: var(--bg-color-dark);
-            --text-color: var(--text-color-dark);
+        [data-theme="dark"] {
+            --background: #121212;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --link-color: #bb86fc;
+            --pre-background: #1e1e1e;
+            --pre-color: #f8f8f2;
+            --table-header: #333;
+            --table-row-alt: #222;
         }
 
         /* Headings */
         h1, h2, h3 {
-            color: var(--text-color);
+            color: var(--heading-color);
         }
 
         h1 {
@@ -66,7 +70,7 @@
         }
 
         a {
-            color: #007BFF;
+            color: var(--link-color);
             text-decoration: none;
         }
 
@@ -76,22 +80,12 @@
 
         /* Preformatted Text */
         pre {
-            background: #2c3e50;
-            color: #ecf0f1;
+            background: var(--pre-background);
+            color: var(--pre-color);
             padding: 15px;
             border-radius: 5px;
             overflow: auto;
             font-family: 'Courier New', Courier, monospace;
-        }
-
-        /* List Styling */
-        ul {
-            list-style-type: disc;
-            margin: 10px 0 10px 20px;
-        }
-
-        ul li {
-            margin: 5px 0;
         }
 
         /* Table Styling */
@@ -109,51 +103,69 @@
         }
 
         th {
-            background-color: #f8f9fa;
-            color: var(--text-color);
+            background-color: var(--table-header);
+            color: var(--heading-color);
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: var(--table-row-alt);
         }
 
-        /* Image Styling */
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* Horizontal Rules */
-        hr {
-            border: none;
-            height: 1px;
-            background: #ccc;
-            margin: 20px 0;
-        }
-
-        /* Dark Mode Toggle Switch */
-        .dark-mode-switch {
+        /* Toggle Switch */
+        .theme-switch {
             position: fixed;
             top: 10px;
-            right: 10px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        .theme-switch input {
+            width: 40px;
+            height: 20px;
+            position: relative;
+            appearance: none;
+            background: #ccc;
+            outline: none;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .theme-switch input:checked {
+            background: #4caf50;
+        }
+
+        .theme-switch input:before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .theme-switch input:checked:before {
+            transform: translateX(20px);
         }
     </style>
 </head>
-<body class="light-mode">
-    <div class="dark-mode-switch">
-        <label>
-            <input type="checkbox" id="darkModeToggle">
-            Dark Mode
-        </label>
+<body>
+    <div class="theme-switch">
+        <label for="theme-toggle">Dark Mode</label>
+        <input type="checkbox" id="theme-toggle">
     </div>
 
     <h1>AetherX Bot 🤖</h1>
     <p><em>A multipurpose Discord bot packed with mini-games, utilities, and fun!</em></p>
 
-     <hr>
+    <hr>
     <h2>Bot Code Information</h2>
     <p>
         <img src="https://repobeats.axiom.co/api/embed/30ea3e4e18bb961e59d4b35e9aee27d17e5505d5.svg" alt="Repobeats analytics">
@@ -260,51 +272,31 @@ cd AetherX-Bot
     <h3>Modifying</h3>
     <p>Go to <a href="https://github.com/AetherX-Discord-bot/Discord-Bot/modification.md/#-setup">How to mod</a>.</p>
 
-
     <h3>Contributing</h3>
     <p>Go to <a href="https://github.com/AetherX-Discord-bot/Discord-Bot/modification.md/#-contributing">How to contribute</a>.</p>
 
     <script>
-        // Function to toggle dark mode
-        const toggleDarkMode = () => {
-            const isChecked = document.getElementById('darkModeToggle').checked;
-            const body = document.body;
+        // Save theme preference in cookies
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = getCookie('theme') || 'light';
+        document.body.dataset.theme = currentTheme;
+        themeToggle.checked = currentTheme === 'dark';
 
-            if (isChecked) {
-                body.classList.add('dark-mode');
-                body.classList.remove('light-mode');
-                document.cookie = "darkMode=enabled; path=/";
-            } else {
-                body.classList.add('light-mode');
-                body.classList.remove('dark-mode');
-                document.cookie = "darkMode=disabled; path=/";
-            }
-        };
+        themeToggle.addEventListener('change', () => {
+            const newTheme = themeToggle.checked ? 'dark' : 'light';
+            document.body.dataset.theme = newTheme;
+            setCookie('theme', newTheme, 365);
+        });
 
-        // Function to check the dark mode preference from cookies
-        const getCookie = (name) => {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        };
+        // Cookie helpers
+        function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+        }
 
-        // Apply dark mode based on cookie
-        window.onload = () => {
-            const darkModePreference = getCookie('darkMode');
-            const darkModeToggle = document.getElementById('darkModeToggle');
-
-            if (darkModePreference === 'enabled') {
-                document.body.classList.add('dark-mode');
-                document.body.classList.remove('light-mode');
-                darkModeToggle.checked = true;
-            } else {
-                document.body.classList.add('light-mode');
-                document.body.classList.remove('dark-mode');
-                darkModeToggle.checked = false;
-            }
-
-            darkModeToggle.addEventListener('change', toggleDarkMode);
-        };
+        function getCookie(name) {
+            return document.cookie.split('; ').find(row => row.startsWith(name + '='))?.split('=')[1];
+        }
     </script>
 </body>
 </html>
