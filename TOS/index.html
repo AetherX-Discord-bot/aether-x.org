@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AetherX Bot - Terms of Service</title>
-    <style>
+    <style id="theme-style">
+        /* Default Light Mode */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -75,7 +76,6 @@
     </style>
 </head>
 <body>
-
     <header>
         <h1>AetherX Bot - Terms of Service</h1>
         <p>Last Updated: December 3, 2024</p>
@@ -152,5 +152,43 @@
         <p>&copy; 2024 AetherX Bot. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Check for the dark mode cookie
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // Apply dark mode if the cookie is set to "dark"
+        function applyTheme() {
+            const theme = getCookie('theme');
+            if (theme === 'dark') {
+                const darkStyle = `
+                    body {
+                        background-color: #121212;
+                        color: #e0e0e0;
+                    }
+                    header {
+                        background-color: #1e1e1e;
+                    }
+                    main {
+                        background-color: #1e1e1e;
+                        box-shadow: none;
+                    }
+                    a {
+                        color: #bb86fc;
+                    }
+                    footer {
+                        background-color: #1e1e1e;
+                    }
+                `;
+                document.getElementById('theme-style').innerHTML += darkStyle;
+            }
+        }
+
+        // Execute theme application on page load
+        applyTheme();
+    </script>
 </body>
 </html>
