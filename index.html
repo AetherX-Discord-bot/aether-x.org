@@ -5,41 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AetherX Bot</title>
     <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #f9f9f9, #e6e6e6);
+            color: #333;
+            line-height: 1.8;
             margin: 20px;
         }
+
+        /* Headings */
         h1, h2, h3 {
-            color: #333;
+            color: #222;
         }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin: 20px 0 10px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin: 10px 0;
+        }
+
+        /* Paragraphs and Links */
+        p {
+            margin: 10px 0;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Preformatted Text */
         pre {
-            background: #f4f4f4;
+            background: #2c3e50;
+            color: #ecf0f1;
             padding: 15px;
             border-radius: 5px;
             overflow: auto;
+            font-family: 'Courier New', Courier, monospace;
         }
+
+        /* List Styling */
         ul {
-            list-style-type: none;
-            padding: 0;
+            list-style-type: disc;
+            margin: 10px 0 10px 20px;
         }
+
         ul li {
             margin: 5px 0;
         }
+
+        /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 10px 0;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        table, th, td {
+
+        th, td {
+            padding: 12px;
+            text-align: left;
             border: 1px solid #ddd;
         }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+
         th {
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Image Styling */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Horizontal Rules */
+        hr {
+            border: none;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+
+        /* Button (optional for call-to-action) */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -153,6 +246,9 @@ cd AetherX-Bot
     </pre>
     <h3>Modifying</h3>
     <p>Go to <a href="https://github.com/AetherX-Discord-bot/Discord-Bot/modification.md/#-setup">How to mod</a>.</p>
+</body>
+</html>
+
 
     <h3>Contributing</h3>
     <p>Go to <a href="https://github.com/AetherX-Discord-bot/Discord-Bot/modification.md/#-contributing">How to contribute</a>.</p>
