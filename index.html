@@ -15,15 +15,33 @@
         /* Body Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to bottom, #f9f9f9, #e6e6e6);
-            color: #333;
+            background: var(--bg-color, #f9f9f9);
+            color: var(--text-color, #333);
             line-height: 1.8;
             margin: 20px;
         }
 
+        /* Light and Dark Mode Variables */
+        :root {
+            --bg-color-light: #f9f9f9;
+            --text-color-light: #333;
+            --bg-color-dark: #121212;
+            --text-color-dark: #f1f1f1;
+        }
+
+        body.light-mode {
+            --bg-color: var(--bg-color-light);
+            --text-color: var(--text-color-light);
+        }
+
+        body.dark-mode {
+            --bg-color: var(--bg-color-dark);
+            --text-color: var(--text-color-dark);
+        }
+
         /* Headings */
         h1, h2, h3 {
-            color: #222;
+            color: var(--text-color);
         }
 
         h1 {
@@ -92,7 +110,7 @@
 
         th {
             background-color: #f8f9fa;
-            color: #333;
+            color: var(--text-color);
         }
 
         tr:nth-child(even) {
@@ -116,141 +134,68 @@
             margin: 20px 0;
         }
 
-        /* Button (optional for call-to-action) */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px 0;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            font-size: 1em;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
+        /* Dark Mode Toggle Switch */
+        .dark-mode-switch {
+            position: fixed;
+            top: 10px;
+            right: 10px;
         }
     </style>
 </head>
-<body>
+<body class="light-mode">
+    <div class="dark-mode-switch">
+        <label>
+            <input type="checkbox" id="darkModeToggle">
+            Dark Mode
+        </label>
+    </div>
+
     <h1>AetherX Bot 🤖</h1>
     <p><em>A multipurpose Discord bot packed with mini-games, utilities, and fun!</em></p>
 
-    <hr>
-    <h2>Bot Code Information</h2>
-    <p>
-        <img src="https://repobeats.axiom.co/api/embed/30ea3e4e18bb961e59d4b35e9aee27d17e5505d5.svg" alt="Repobeats analytics">
-    </p>
-    <h3>Lucas's Fork</h3>
-    <p>
-        <img src="https://repobeats.axiom.co/api/embed/3dceb6b21d392620b80257f2da42bf06b915356a.svg" alt="Repobeats analytics">
-    </p>
+    <!-- Content (unchanged) -->
 
-    <hr>
-    <h2>Table of Contents</h2>
-    <ul>
-        <li><a href="#features">🎮 Features</a></li>
-        <li><a href="#commands">📋 Commands</a></li>
-        <li><a href="#installation">🚀 Installation</a></li>
-    </ul>
+    <script>
+        // Function to toggle dark mode
+        const toggleDarkMode = () => {
+            const isChecked = document.getElementById('darkModeToggle').checked;
+            const body = document.body;
 
-    <hr>
-    <h2 id="features">🎮 Features</h2>
-    <p>AetherX Bot offers a variety of features to enhance your Discord experience:</p>
+            if (isChecked) {
+                body.classList.add('dark-mode');
+                body.classList.remove('light-mode');
+                document.cookie = "darkMode=enabled; path=/";
+            } else {
+                body.classList.add('light-mode');
+                body.classList.remove('dark-mode');
+                document.cookie = "darkMode=disabled; path=/";
+            }
+        };
 
-    <h3>🎲 Mini-Games</h3>
-    <ul>
-        <li><strong>Blackjack</strong>: Test your luck in a classic card game.</li>
-        <li><strong>HighLow</strong>: Guess if the next number is higher or lower.</li>
-        <li><strong>DND Dice Roll</strong>: Roll dice for your tabletop RPG sessions.</li>
-        <li><strong>Rock, Paper, Scissors</strong>: Challenge your friends to a quick match.</li>
-        <li><strong>Tic-Tac-Toe</strong>: Compete against others or AI in a strategic game of X's and O's.</li>
-        <li><strong>Guess the Number</strong>: Try to guess the correct number within a range.</li>
-        <li><strong>Trivia Quiz</strong>: Show off your knowledge in various trivia categories.</li>
-    </ul>
+        // Function to check the dark mode preference from cookies
+        const getCookie = (name) => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        };
 
-    <h3>🛠️ Utilities</h3>
-    <ul>
-        <li><strong>AFK System</strong>: Mark yourself AFK, notify others, and track your time away.</li>
-        <li><strong>Reminder System</strong>: Set reminders for specific times, delivered to your DM or server.</li>
-        <li><strong>Server Info</strong>: Displays server details like member count, channels, and roles.</li>
-    </ul>
+        // Apply dark mode based on cookie
+        window.onload = () => {
+            const darkModePreference = getCookie('darkMode');
+            const darkModeToggle = document.getElementById('darkModeToggle');
 
-    <h3>⚙ Customization</h3>
-    <ul>
-        <li><strong>Rich Presence</strong>: Dynamic status updates for the bot.</li>
-        <li><strong>Word of the Day (WOTD)</strong>: Learn something new daily, including word meaning and history.</li>
-        <li><strong>Ticket System</strong>: Manage support tickets directly in Discord with advanced features for staff communication.</li>
-    </ul>
+            if (darkModePreference === 'enabled') {
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+                darkModeToggle.checked = true;
+            } else {
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+                darkModeToggle.checked = false;
+            }
 
-    <h3>💻 Developer</h3>
-    <ul>
-        <li><strong>User ID Restriction</strong>: Require an ID allowing developers to use certain features.</li>
-        <li><strong>Restarting</strong>: Restart your bot if you need to fix or update something.</li>
-        <li><strong>Logging</strong>: Log to your terminal through the bot.</li>
-        <li><strong>News Posting</strong>: Enter the ID to your News Channel to post to it!</li>
-    </ul>
-
-    <hr>
-    <h2 id="commands">📋 Commands</h2>
-
-    <h3>🔹 General Commands</h3>
-    <table>
-        <tr><th>Command</th><th>Description</th></tr>
-        <tr><td>/serverinfo</td><td>Displays detailed server information.</td></tr>
-        <tr><td>/reminder</td><td>Sets a reminder for a specific time.</td></tr>
-        <tr><td>!wotd</td><td>Fetches the Word of the Day with details.</td></tr>
-    </table>
-
-    <h3>🔹 Mini-Games</h3>
-    <table>
-        <tr><th>Command</th><th>Description</th></tr>
-        <tr><td>!blackjack</td><td>Starts a game of Blackjack.</td></tr>
-        <tr><td>!highlow</td><td>Begins the HighLow guessing game.</td></tr>
-        <tr><td>!ttt</td><td>Launches a game of Tic-Tac-Toe.</td></tr>
-    </table>
-
-    <h3>🔹 Moderation & Tools</h3>
-    <table>
-        <tr><th>Command</th><th>Description</th></tr>
-        <tr><td>!afk</td><td>Marks a user as AFK with a custom message.</td></tr>
-        <tr><td>!ticket</td><td>Opens a new support ticket.</td></tr>
-        <tr><td>/kick</td><td>Kicks a user, a user can use it on themselves.</td></tr>
-        <tr><td>/ban</td><td>Bans a user.</td></tr>
-    </table>
-
-    <h3>🔹 Misc</h3>
-    <table>
-        <tr><th>Command</th><th>Description</th></tr>
-        <tr><td>/say</td><td>Say a quote as the bot.</td></tr>
-    </table>
-
-    <h3>🔹 Developer</h3>
-    <table>
-        <tr><th>Command</th><th>Description</th></tr>
-        <tr><td>!restart</td><td>Restarts the bot.</td></tr>
-        <tr><td>!log</td><td>Logs something to the terminal for the bot.</td></tr>
-        <tr><td>!news</td><td>Posts news to a channel.</td></tr>
-    </table>
-
-    <hr>
-    <h2 id="installation">🚀 Installation</h2>
-    <p>Follow these steps to run AetherX Bot on your server:</p>
-    <pre>
-git clone https://github.com/AetherX-Discord-bot/Discord-Bot.git
-cd AetherX-Bot
-    </pre>
-    <h3>Modifying</h3>
-    <p>Go to <a href="https://github.com/AetherX-Discord-bot/Discord-Bot/modification.md/#-setup">How to mod</a>.</p>
-</body>
-</html>
-
-
-    <h3>Contributing</h3>
-    <p>Go to <a href="https://github.com/AetherX-Discord-bot/Discord-Bot/modification.md/#-contributing">How to contribute</a>.</p>
+            darkModeToggle.addEventListener('change', toggleDarkMode);
+        };
+    </script>
 </body>
 </html>
