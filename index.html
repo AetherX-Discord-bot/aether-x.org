@@ -3,48 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub README Viewer</title>
+    <title>AetherX Bot</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
             line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
         }
         pre {
             background: #f4f4f4;
             padding: 15px;
             border-radius: 5px;
-            overflow: auto;
         }
-        h1 {
-            color: #333;
+        .image {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <h1>GitHub README Viewer</h1>
-    <div id="readme-content">
-        <p>Loading README content...</p>
+    <h1>AetherX Bot 🤖</h1>
+    <p><em>A multipurpose Discord bot packed with mini-games, utilities, and fun!</em></p>
+
+    <hr>
+
+    <h2>Bot Code Information</h2>
+    <div class="image">
+        <img src="https://repobeats.axiom.co/api/embed/30ea3e4e18bb961e59d4b35e9aee27d17e5505d5.svg" alt="Repobeats analytics image">
     </div>
-    <script>
-        const readmeUrl = "https://raw.githubusercontent.com/AetherX-Discord-bot/Discord-Bot/main/.github/README.md";
+    <h3>Lucas's Fork</h3>
+    <div class="image">
+        <img src="https://repobeats.axiom.co/api/embed/3dceb6b21d392620b80257f2da42bf06b915356a.svg" alt="Repobeats analytics image">
+    </div>
 
-        async function fetchReadme() {
-            try {
-                const response = await fetch(readmeUrl);
-                if (!response.ok) {
-                    throw new Error(`Error fetching README: ${response.statusText}`);
-                }
-                const markdown = await response.text();
-                document.getElementById("readme-content").innerHTML = `
-                    <pre>${markdown}</pre>
-                `;
-            } catch (error) {
-                document.getElementById("readme-content").innerHTML = `<p>${error.message}</p>`;
-            }
-        }
+    <hr>
 
-        fetchReadme();
-    </script>
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#features">🎮 Features</a>
+            <ul>
+                <li><a href="#mini-games">🎲 Mini-Games</a></li>
+                <li><a href="#utilities">🛠️ Utilities</a></li>
+                <li><a href="#customization">⚙ Customization</a></li>
+                <li><a href="#developer">💻 Developer</a></li>
+            </ul>
+        </li>
+        <li><a href="#commands">📋 Commands</a>
+            <ul>
+                <li><a href="#general-commands">🔹 General Commands</a></li>
+                <li><a href="#mini-games-1">🔹 Mini-Games</a></li>
+                <li><a href="#moderation-tools">🔹 Moderation & Tools</a></li>
+                <li><a href="#misc">🔹 Misc</a></li>
+                <li><a href="#developer-1">🔹 Developer</a></li>
+            </ul>
+        </li>
+        <li><a href="#installation">🚀 Installation</a>
+            <ul>
+                <li><a href="./modification.md/#-setup">How to mod</a></li>
+                <li><a href="./modification.md/#-contributing">How to contribute</a></li>
+            </ul>
+        </li>
+    </ol>
+
+    <hr>
+
+    <h2 id="features">🎮 Features</h2>
+    <p>AetherX Bot offers a variety of features to enhance your Discord experience:</p>
+
+    <h3 id="mini-games">🎲 Mini-Games</h3>
+    <ul>
+        <li><strong>Blackjack</strong>: Test your luck in a classic card game.</li>
+        <li><strong>HighLow</strong>: Guess if the next number is higher or lower.</li>
+        <li><strong>DND Dice Roll</strong>: Roll dice for your tabletop RPG sessions.</li>
+        <li><strong>Rock, Paper, Scissors</strong>: Challenge your friends to a quick match.</li>
+        <li><strong>Tic-Tac-Toe</strong>: Compete against others or AI in a strategic game of X's and O's.</li>
+        <li><strong>Guess the Number</strong>: Try to guess the correct number within a range.</li>
+        <li><strong>Trivia Quiz</strong>: Show off your knowledge in various trivia categories.</li>
+    </ul>
+
+    <h3 id="utilities">🛠️ Utilities</h3>
+    <ul>
+        <li><strong>AFK System</strong>: Mark yourself AFK, notify others, and track your time away.</li>
+        <li><strong>Reminder System</strong>: Set reminders for specific times, delivered to your DM or server.</li>
+        <li><strong>Server Info</strong>: Displays server details like member count, channels, and roles.</li>
+    </ul>
+
+    <h3 id="customization">⚙ Customization</h3>
+    <ul>
+        <li><strong>Rich Presence</strong>: Dynamic status updates for the bot.</li>
+        <li><strong>Word of the Day (WOTD)</strong>: Learn something new daily, including word meaning and history.</li>
+        <li><strong>Ticket System</strong>: Manage support tickets directly in Discord with advanced features for staff communication.</li>
+    </ul>
+
+    <h3 id="developer">💻 Developer</h3>
+    <ul>
+        <li><strong>User ID Restriction</strong>: Require an ID allowing developers to use certain features.</li>
+        <li><strong>Restarting</strong>: Restart your bot if you need to fix or update something.</li>
+        <li><strong>Logging</strong>: Log to your terminal through the bot.</li>
+        <li><strong>News Posting</strong>: Enter the ID to your News Channel to post to it!</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="commands">📋 Commands</h2>
+    <h3 id="general-commands">🔹 General Commands</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Command</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>/serverinfo</code></td>
+                <td>Displays detailed server information.</td>
+            </tr>
+            <tr>
+                <td><code>/reminder</code></td>
+                <td>Sets a reminder for a specific time.</td>
+            </tr>
+            <tr>
+                <td><code>!wotd</code></td>
+                <td>Fetches the Word of the Day with details.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 id="installation">🚀 Installation</h3>
+    <ol>
+        <li><strong>Clone the Repository</strong>:
+            <pre><code>git clone https://github.com/AetherX-Discord-bot/Discord-Bot.git
+cd AetherX-Bot
+            </code></pre>
+        </li>
+        <li>Visit <a href="./modification.md/#-setup">How to mod</a> or <a href="./modification.md/#-contributing">How to contribute</a> for further details.</li>
+    </ol>
 </body>
 </html>
