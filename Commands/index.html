@@ -64,6 +64,22 @@
         .index-container a:hover {
             background-color: #0056b3;
         }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .theme-toggle:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +90,9 @@
         <a href="3">Commands List 3: Moderation Commands</a>
         <a href="4">Commands List 4: Game Commands</a>
     </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">Switch to Dark Mode</button>
 
     <script>
         // Function to get the value of a cookie
@@ -86,11 +105,33 @@
             return null;
         }
 
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
         // Set initial theme based on cookie or system preference
         const savedTheme = getCookie('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const theme = savedTheme || (prefersDark ? 'dark' : 'light');
         document.body.className = theme;
+
+        // Update the theme toggle button text based on current theme
+        const themeToggle = document.getElementById('themeToggle');
+        if (theme === 'dark') {
+            themeToggle.textContent = 'Switch to Light Mode';
+        }
+
+        // Toggle theme when button is clicked
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.body.className === 'dark' ? 'light' : 'dark';
+            document.body.className = newTheme;
+            themeToggle.textContent = newTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+            setCookie('theme', newTheme, 365); // Save the selected theme in a cookie
+        });
     </script>
 </body>
 </html>
