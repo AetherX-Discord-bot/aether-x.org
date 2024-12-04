@@ -210,14 +210,6 @@
                 return "";
             }
     
-            // Function to set a cookie
-            function setCookie(name, value, days) {
-                let d = new Date();
-                d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-                let expires = "expires=" + d.toUTCString();
-                document.cookie = name + "=" + value + ";" + expires + ";path=/";
-            }
-    
             // Function to set the theme based on the 'theme' cookie value
             function setTheme() {
                 let currentTheme = getCookie('theme');
@@ -225,11 +217,6 @@
                     document.body.dataset.theme = currentTheme;  // Apply the theme
                 } else {
                     document.body.dataset.theme = 'light';  // Default to light mode if no cookie
-                }
-    
-                // Set the checkbox based on the theme
-                if (currentTheme === 'dark') {
-                    document.getElementById('theme-toggle').checked = true;  // Check the toggle if dark mode is active
                 }
             }
     
@@ -269,12 +256,6 @@
                 <a class="discord-link" href="https://discordapp.com/users/1274922263011004500" target="_blank">1274922263011004500</a>
             </li>
         </ul>
-    </div>
-
-    <!-- Theme Toggle Switch -->
-    <div class="theme-switch">
-        <label for="theme-toggle">Dark Mode</label>
-        <input type="checkbox" id="theme-toggle">
     </div>
 </body>
 </html>
