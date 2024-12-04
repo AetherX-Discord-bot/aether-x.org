@@ -196,40 +196,6 @@
             transform: translateX(20px);
         }
     </style>
-        <script>
-            // Function to get the value of a cookie by name
-            function getCookie(name) {
-                let decodedCookie = decodeURIComponent(document.cookie);
-                let ca = decodedCookie.split(';');
-                for (let i = 0; i < ca.length; i++) {
-                    let c = ca[i].trim();
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
-            }
-    
-            // Function to set the theme based on the 'theme' cookie value
-            function setTheme() {
-                let currentTheme = getCookie('theme');
-                if (currentTheme) {
-                    document.body.dataset.theme = currentTheme;  // Apply the theme
-                } else {
-                    document.body.dataset.theme = 'light';  // Default to light mode if no cookie
-                }
-            }
-    
-            // Toggle theme when the checkbox is clicked
-            document.getElementById('theme-toggle').addEventListener('change', function() {
-                const newTheme = this.checked ? 'dark' : 'light';
-                document.body.dataset.theme = newTheme;
-                setCookie('theme', newTheme, 365);
-            });
-    
-            // Set the initial theme when the page loads
-            setTheme();
-        </script>
 </head>
 <body>
     <div class="credits-container">
