@@ -19,6 +19,7 @@
             color: var(--text-color);
             line-height: 1.8;
             margin: 20px;
+            transition: background 0.3s, color 0.3s; /* Smooth transition */
         }
 
         :root {
@@ -253,8 +254,14 @@
 
         // Function to set the theme based on the 'theme' cookie value
         function setTheme() {
-            const currentTheme = getCookie('theme') || 'light';  // Default to light if cookie is not set
-            document.body.dataset.theme = currentTheme;  // Apply the theme
+            let currentTheme = getCookie('theme');
+            if (currentTheme) {
+                document.body.dataset.theme = currentTheme;  // Apply the theme
+            } else {
+                document.body.dataset.theme = 'light';  // Default to light mode if no cookie
+            }
+
+            // Set the checkbox based on the theme
             if (currentTheme === 'dark') {
                 document.getElementById('theme-toggle').checked = true;  // Check the toggle if dark mode is active
             }
