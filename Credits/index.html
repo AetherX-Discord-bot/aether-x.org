@@ -30,6 +30,8 @@
             --pre-color: #ecf0f1;
             --table-header: #f8f9fa;
             --table-row-alt: #f2f2f2;
+            --item-background: rgba(0, 0, 0, 0.1); /* Light background for items */
+            --item-hover-background: rgba(0, 0, 0, 0.2); /* Hover effect background */
         }
 
         [data-theme="dark"] {
@@ -41,6 +43,8 @@
             --pre-color: #f8f8f2;
             --table-header: #333;
             --table-row-alt: #222;
+            --item-background: rgba(255, 255, 255, 0.1); /* Darker background for items */
+            --item-hover-background: rgba(255, 255, 255, 0.2); /* Hover effect background */
         }
 
         /* Headings */
@@ -109,6 +113,42 @@
 
         tr:nth-child(even) {
             background-color: var(--table-row-alt);
+        }
+
+        /* Credits Section */
+        .credits-container {
+            margin-top: 30px;
+        }
+
+        .credits-item {
+            background-color: var(--item-background);
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .credits-item:hover {
+            background-color: var(--item-hover-background);
+        }
+
+        .credits-item span {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .credits-item .description {
+            font-style: italic;
+            color: var(--link-color);
+        }
+
+        .credits-item .discord-link {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .credits-item .discord-link:hover {
+            text-decoration: underline;
         }
 
         /* Theme Toggle Switch */
