@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command Pages Index</title>
+    <title>Game Commands</title>
     <style>
         /* General Reset */
         body, html {
@@ -20,8 +20,9 @@
             color: #333;
         }
 
-        .light .index-container {
+        .light .commands-container {
             background-color: #ffffff;
+            color: #333;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -31,49 +32,52 @@
             color: #ffffff;
         }
 
-        .dark .index-container {
+        .dark .commands-container {
             background-color: #1e1e1e;
+            color: #ffffff;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
         h1 {
             text-align: center;
             font-size: 2rem;
-            margin-top: 20px;
         }
 
-        .index-container {
+        .commands-container {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             border-radius: 8px;
+        }
+
+        .command {
+            margin: 10px 0;
+        }
+
+        .command strong {
+            color: #007BFF;
+        }
+
+        .footer {
             text-align: center;
-        }
-
-        .index-container a {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .index-container a:hover {
-            background-color: #0056b3;
+            margin-top: 20px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <h1>Command Pages</h1>
-    <div class="index-container">
-        <a href="1">Commands List 1: General Commands</a>
-        <a href="2">Commands List 2: Music Commands</a>
-        <a href="3">Commands List 3: Moderation Commands</a>
-        <a href="4">Commands List 4: Game Commands</a>
+    <h1>Game Commands</h1>
+    <div class="commands-container">
+        <div class="command"><strong>!blackjack</strong> or <strong>!bj</strong> - Play a game of BlackJack.</div>
+        <div class="command"><strong>!d&d</strong> - Roll the dice!</div>
+        <div class="command"><strong>!highlow</strong> or <strong>!hl</strong> - Play a game of HighLow.</div>
+        <div class="command"><strong>!tictactoe</strong> or <strong>!ttt</strong> - Play a game of TicTacToe against another user or the bot.</div>
+        <div class="command"><strong>!coinflip</strong> or <strong>!cf</strong> - Flip a coin.</div>
+        <div class="command"><strong>!trivia</strong> or <strong>!quiz</strong> - Try to pick the correct answer on a random question.</div>
+        <div class="command"><strong>!rockpaperscissors</strong> or <strong>!rps</strong> - Play a game of Rock Paper Scissors.</div>
+        <div class="command"><strong>!wotd</strong> - Sends the Word Of The Day.</div>
     </div>
+    <div class="footer">Page 4 of 4</div>
 
     <script>
         // Function to get the value of a cookie

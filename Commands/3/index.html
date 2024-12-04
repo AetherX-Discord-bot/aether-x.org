@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command Pages Index</title>
+    <title>Moderation Commands</title>
     <style>
         /* General Reset */
         body, html {
@@ -20,8 +20,9 @@
             color: #333;
         }
 
-        .light .index-container {
+        .light .commands-container {
             background-color: #ffffff;
+            color: #333;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -31,49 +32,50 @@
             color: #ffffff;
         }
 
-        .dark .index-container {
+        .dark .commands-container {
             background-color: #1e1e1e;
+            color: #ffffff;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
         h1 {
             text-align: center;
             font-size: 2rem;
-            margin-top: 20px;
         }
 
-        .index-container {
+        .commands-container {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             border-radius: 8px;
+        }
+
+        .command {
+            margin: 10px 0;
+        }
+
+        .command strong {
+            color: #007BFF;
+        }
+
+        .footer {
             text-align: center;
-        }
-
-        .index-container a {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .index-container a:hover {
-            background-color: #0056b3;
+            margin-top: 20px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <h1>Command Pages</h1>
-    <div class="index-container">
-        <a href="1">Commands List 1: General Commands</a>
-        <a href="2">Commands List 2: Music Commands</a>
-        <a href="3">Commands List 3: Moderation Commands</a>
-        <a href="4">Commands List 4: Game Commands</a>
+    <h1>Moderation Commands</h1>
+    <div class="commands-container">
+        <div class="command"><strong>!ban [user]</strong> - Bans the mentioned user.</div>
+        <div class="command"><strong>!kick [user]</strong> - Kicks the mentioned user.</div>
+        <div class="command"><strong>!mute [user]</strong> - Mutes the mentioned user.</div>
+        <div class="command"><strong>!unmute [user]</strong> - Unmutes the mentioned user.</div>
+        <div class="command"><strong>!purge [amount]</strong> - Deletes a specified number of messages.</div>
+        <div class="command"><strong>!timeout [user] [time]</strong> - Times out a user for a specified duration.</div>
     </div>
+    <div class="footer">Page 3 of 4</div>
 
     <script>
         // Function to get the value of a cookie

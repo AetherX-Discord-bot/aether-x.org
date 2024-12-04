@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Commands</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Light Theme */
+        body.light {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .light .commands-container {
+            background-color: #ffffff;
+            color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark Theme */
+        body.dark {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .dark .commands-container {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .commands-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .command {
+            margin: 10px 0;
+        }
+
+        .command strong {
+            color: #007BFF;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Music Commands</h1>
+    <div class="commands-container">
+        <div class="command"><strong>!play [song/URL]</strong> - Plays music from YouTube or Spotify, or searches for the song.</div>
+        <div class="command"><strong>!skip</strong> - Skips the currently playing song.</div>
+        <div class="command"><strong>!stop</strong> - Stops the music and clears the queue.</div>
+        <div class="command"><strong>!pause</strong> - Pauses the currently playing song.</div>
+        <div class="command"><strong>!resume</strong> - Resumes a paused song.</div>
+        <div class="command"><strong>!queue</strong> - Displays the current song queue.</div>
+        <div class="command"><strong>!skipto [number]</strong> - Skips to the song at the specified position in the queue.</div>
+        <div class="command"><strong>!volume [1-100]</strong> - Sets the volume of the music player.</div>
+        <div class="command"><strong>!nowplaying</strong> - Displays the currently playing song.</div>
+        <div class="command"><strong>!disconnect</strong> - Makes the bot leave the voice channel.</div>
+        <div class="command"><strong>!shuffle</strong> - Shuffles the current song queue.</div>
+        <div class="command"><strong>!lyrics [song name]</strong> - Fetches and displays the lyrics for the specified song.</div>
+        <div class="command"><strong>!seek [time]</strong> - Jumps to a specific time in the currently playing song.</div>
+        <div class="command"><strong>!repeat</strong> - Toggles repeat for the current song or the entire queue.</div>
+        <div class="command"><strong>!playlist [playlist name/URL]</strong> - Plays a specified playlist from a supported service.</div>
+    </div>
+    <div class="footer">Page 2 of 4</div>
+
+    <script>
+        // Function to get the value of a cookie
+        function getCookie(name) {
+            const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+            for (const cookie of cookies) {
+                const [key, value] = cookie.split('=');
+                if (key === name) return value;
+            }
+            return null;
+        }
+
+        // Set initial theme based on cookie or system preference
+        const savedTheme = getCookie('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.body.className = theme;
+    </script>
+</body>
+</html>
