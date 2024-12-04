@@ -79,11 +79,39 @@
             background-color: #f0f0f0;
         }
 
-        /* Theme toggle checkbox */
+        /* Theme toggle checkbox styles */
         .theme-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .theme-toggle input {
+            margin-right: 8px;
+        }
+
+        /* Checkbox style for light mode */
+        body[data-theme="light"] .theme-toggle input {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+        }
+
+        /* Checkbox style for dark mode */
+        body[data-theme="dark"] .theme-toggle input {
+            background-color: #1e1e1e;
+            border: 2px solid #ffffff;
+        }
+
+        /* Style for label text (for better readability in light mode) */
+        body[data-theme="light"] .theme-toggle label {
+            color: #000000;
+        }
+
+        body[data-theme="dark"] .theme-toggle label {
+            color: #ffffff;
         }
     </style>
 </head>
