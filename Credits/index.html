@@ -5,113 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bot Credits</title>
     <style>
-        body, html {
+        /* General Reset */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Dark mode styles */
-        body[data-theme="dark"] {
-            background-color: #121212;
-            color: #ffffff;
+        /* Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 20px;
         }
 
-        .credits-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #1e1e1e;
+        :root {
+            --background: linear-gradient(to bottom, #f9f9f9, #e6e6e6);
+            --text-color: #333;
+            --heading-color: #222;
+            --link-color: #007BFF;
+            --pre-background: #2c3e50;
+            --pre-color: #ecf0f1;
+            --table-header: #f8f9fa;
+            --table-row-alt: #f2f2f2;
+        }
+
+        [data-theme="dark"] {
+            --background: #121212;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --link-color: #bb86fc;
+            --pre-background: #1e1e1e;
+            --pre-color: #f8f8f2;
+            --table-header: #333;
+            --table-row-alt: #222;
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            color: var(--heading-color);
         }
 
         h1 {
+            font-size: 2.5em;
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
+        h2 {
+            font-size: 1.8em;
+            margin: 20px 0 10px;
         }
 
-        li {
-            margin: 15px 0;
+        h3 {
+            font-size: 1.4em;
+            margin: 10px 0;
         }
 
-        .credits-item {
-            display: flex;
-            align-items: center;
+        /* Paragraphs and Links */
+        p {
+            margin: 10px 0;
         }
 
-        .credits-item span {
-            flex: 1;
-            font-size: 1.2rem;
-        }
-
-        .description {
-            font-style: italic;
-            color: #aaaaaa;
-            font-size: 0.9rem;
-        }
-
-        .discord-link {
-            color: #00acee;
+        a {
+            color: var(--link-color);
             text-decoration: none;
-            font-weight: bold;
         }
 
-        .discord-link:hover {
+        a:hover {
             text-decoration: underline;
         }
 
-        /* Light mode styles */
-        body[data-theme="light"] {
-            background-color: #ffffff;
-            color: #000000;
+        /* Preformatted Text */
+        pre {
+            background: var(--pre-background);
+            color: var(--pre-color);
+            padding: 15px;
+            border-radius: 5px;
+            overflow: auto;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        .credits-container[data-theme="light"] {
-            background-color: #f0f0f0;
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Theme toggle checkbox styles */
-        .theme-toggle {
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--table-header);
+            color: var(--heading-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--table-row-alt);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
             position: fixed;
-            top: 20px;
+            top: 10px;
             right: 20px;
             display: flex;
             align-items: center;
+            gap: 8px;
             font-size: 1rem;
+            color: var(--text-color);
         }
 
-        .theme-toggle input {
-            margin-right: 8px;
+        .theme-switch input {
+            width: 40px;
+            height: 20px;
+            position: relative;
+            appearance: none;
+            background: #ccc;
+            outline: none;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background 0.3s;
         }
 
-        /* Checkbox style for light mode */
-        body[data-theme="light"] .theme-toggle input {
-            background-color: #ffffff;
-            border: 2px solid #000000;
+        .theme-switch input:checked {
+            background: #4caf50;
         }
 
-        /* Checkbox style for dark mode */
-        body[data-theme="dark"] .theme-toggle input {
-            background-color: #1e1e1e;
-            border: 2px solid #ffffff;
+        .theme-switch input:before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
         }
 
-        /* Style for label text (for better readability in light mode) */
-        body[data-theme="light"] .theme-toggle label {
-            color: #000000;
-        }
-
-        body[data-theme="dark"] .theme-toggle label {
-            color: #ffffff;
+        .theme-switch input:checked:before {
+            transform: translateX(20px);
         }
     </style>
 </head>
@@ -142,10 +183,11 @@
         </ul>
     </div>
 
-    <!-- Theme toggle checkbox -->
-    <label class="theme-toggle">
-        <input type="checkbox" id="themeToggle"> Dark Mode
-    </label>
+    <!-- Theme Toggle Switch -->
+    <div class="theme-switch">
+        <label for="theme-toggle">Dark Mode</label>
+        <input type="checkbox" id="theme-toggle">
+    </div>
 
     <script>
         // Function to get the value of a cookie by name
@@ -174,12 +216,12 @@
             const currentTheme = getCookie('theme') || 'light';  // Default to light if cookie is not set
             document.body.dataset.theme = currentTheme;  // Apply the theme
             if (currentTheme === 'dark') {
-                document.getElementById('themeToggle').checked = true;  // Check the toggle if dark mode is active
+                document.getElementById('theme-toggle').checked = true;  // Check the toggle if dark mode is active
             }
         }
 
         // Toggle theme when the checkbox is clicked
-        document.getElementById('themeToggle').addEventListener('change', function() {
+        document.getElementById('theme-toggle').addEventListener('change', function() {
             const newTheme = this.checked ? 'dark' : 'light';
             document.body.dataset.theme = newTheme;
             setCookie('theme', newTheme, 365);
