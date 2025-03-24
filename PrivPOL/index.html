@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AetherX Bot - Privacy Policy</title>
+    <title>AetherX Bot Privacy Policy</title>
     <style id="theme-style">
         /* Default Light Mode */
         body {
@@ -68,86 +67,55 @@
     </style>
 </head>
 <body>
+
     <header>
-        <h1>AetherX Bot - Privacy Policy</h1>
-        <p>Last Updated: December 3, 2024</p>
+        <h1>AetherX Bot Privacy Policy</h1>
     </header>
 
     <main>
-        <section>
-            <h2>1. No User Data Collection</h2>
-            <p>AetherX Bot does not collect, store, or process any personal user data.</p>
-            <p>The only data retained by the Bot is the public Discord User IDs of the Bot's developers. These User IDs are used strictly for internal purposes, such as Bot management and troubleshooting. User IDs are inherently public as part of the Discord platform and are not sensitive information.</p>
-        </section>
+        <p>At AetherX Bot, we are committed to transparency regarding the data we collect and how it is used. Below is an overview of our data practices:</p>
 
-        <section>
-            <h2>2. Data Security</h2>
-            <p>As the Bot does not store any user data outside of developer User IDs, there is minimal risk of data breaches. Developer User IDs are managed securely within the Bot's internal configuration.</p>
-        </section>
+        <h2>1. Data Collection</h2>
+        <p>AetherX Bot collects the following information:</p>
+        <ul>
+            <li><strong>User ID + Server:</strong>
+                <ul>
+                    <li>Level</li>
+                    <li>XP</li>
+                </ul>
+            </li>
+            <li><strong>User ID:</strong>
+                <ul>
+                    <li>Bio</li>
+                    <li>Favorite Color</li>
+                    <li>Affiliation</li>
+                    <li><code>AllowStatusView</code>: Allows a user to see the activities of the user via the <code>$profile</code> command</li>
+                    <li><code>DefAllLongOrShort</code>: Toggles the <code>$profile</code> command to show detailed or minimal information</li>
+                </ul>
+            </li>
+        </ul>
+        <p>All other data is retrieved from <strong>Discord's public information</strong>, and is used strictly for the Bot’s functionality.</p>
 
-        <section>
-            <h2>3. No Data Sharing</h2>
-            <p>Since the Bot does not collect or store user data, there is no data to share with third parties under any circumstances.</p>
-        </section>
+        <h2>2. Data Security</h2>
+        <p>The data we collect is used solely to enhance the user experience and improve Bot functionality. This data is stored securely and only accessed as needed for Bot management.</p>
 
-        <section>
-            <h2>4. No Data Retention</h2>
-            <p>The Bot does not retain any data from users. Developer User IDs are part of the Bot's static configuration and are not altered or used beyond Bot-related purposes.</p>
-        </section>
+        <h2>3. No Data Sharing</h2>
+        <p>Since AetherX Bot does not share or sell any user data to third parties, all collected data is kept within the Bot’s internal configuration and is used solely for Bot functionality.</p>
 
-        <section>
-            <h2>5. Changes to this Privacy Policy</h2>
-            <p>We may update this Privacy Policy from time to time to reflect changes in functionality or compliance requirements. Any updates will be communicated via appropriate channels, such as the Bot or its support server.</p>
-        </section>
+        <h2>4. No Data Retention</h2>
+        <p>AetherX Bot does not retain user data beyond its immediate use for Bot-related purposes. All data is stored temporarily as necessary and is not kept longer than required.</p>
 
-        <section>
-            <h2>6. Contact Us</h2>
-            <p>If you have any questions or concerns about this Privacy Policy or the Bot’s functionality, please contact us at:</p>
-            <p>Email: <a href="mailto:AetherXdevs@outlook.com">AetherXdevs@outlook.com</a></p>
-        </section>
+        <h2>5. Changes to this Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time to reflect changes in functionality or compliance requirements. Any updates will be communicated via appropriate channels, such as the Bot or its support server.</p>
+
+        <h2>6. Contact Us</h2>
+        <p>If you have any questions or concerns about this Privacy Policy or the Bot’s functionality, please contact us at:</p>
+        <p><strong>Email:</strong> <a href="mailto:AetherXdevs@outlook.com">AetherXdevs@outlook.com</a></p>
     </main>
 
     <footer>
-        <p>&copy; 2024 AetherX Bot. All rights reserved.</p>
+        <p>&copy; 2025 AetherX Bot. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Check for the dark mode cookie
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-        // Apply dark mode if the cookie is set to "dark"
-        function applyTheme() {
-            const theme = getCookie('theme');
-            if (theme === 'dark') {
-                const darkStyle = `
-                    body {
-                        background-color: #121212;
-                        color: #e0e0e0;
-                    }
-                    header {
-                        background-color: #1e1e1e;
-                    }
-                    main {
-                        background-color: #1e1e1e;
-                        box-shadow: none;
-                    }
-                    a {
-                        color: #bb86fc;
-                    }
-                    footer {
-                        background-color: #1e1e1e;
-                    }
-                `;
-                document.getElementById('theme-style').innerHTML += darkStyle;
-            }
-        }
-
-        // Execute theme application on page load
-        applyTheme();
-    </script>
 </body>
 </html>
