@@ -10,10 +10,12 @@
         :root {
             --primary: #5865F2;
             --primary-dark: #4752C4;
-            --dark: #23272A;
-            --light: #FFFFFF;
-            --gray: #99AAB5;
+            --dark: #000000; /* Pure black */
+            --darker: #0A0A0A; /* Slightly lighter black */
+            --light: #E0E0E0; /* Soft white for text */
+            --gray: #666666;
             --success: #57F287;
+            --card-bg: #121212; /* Dark gray for cards */
         }
         
         * {
@@ -24,18 +26,20 @@
         }
         
         body {
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
+            min-height: 100vh;
         }
         
         header {
-            background: linear-gradient(135deg, var(--dark), #2C2F33);
+            background: linear-gradient(135deg, var(--darker), #000000);
             color: var(--light);
             padding: 3rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid var(--gray);
         }
         
         header::after {
@@ -45,7 +49,7 @@
             left: 0;
             right: 0;
             height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23f9f9f9" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23f9f9f9" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f9f9f9"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23000000" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23000000" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23000000"/></svg>');
             background-size: cover;
             z-index: 1;
         }
@@ -74,13 +78,15 @@
             border-radius: 50%;
             object-fit: cover;
             border: 5px solid var(--primary);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
+            filter: brightness(0.95);
         }
         
         .bot-avatar:hover {
             transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+            filter: brightness(1.1);
         }
         
         .bot-details {
@@ -98,13 +104,13 @@
             font-weight: bold;
             margin-top: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
         
         .btn:hover {
             background: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 7px 14px rgba(88, 101, 242, 0.3);
         }
         
         .btn i {
@@ -119,17 +125,19 @@
         }
         
         .feature-card {
-            background: var(--light);
+            background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             animation: fadeIn 1s;
+            border: 1px solid #222;
         }
         
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.2);
+            border-color: var(--primary);
         }
         
         .feature-card h3 i {
@@ -142,16 +150,36 @@
             animation: fadeIn 1s;
         }
         
+        h1, h2, h3 {
+            color: var(--light);
+            font-weight: 600;
+        }
+        
+        p {
+            color: var(--gray);
+        }
+        
+        a {
+            color: var(--primary);
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            color: var(--light);
+        }
+        
         .legal-section {
-            background: #f0f0f0;
+            background: var(--darker);
             padding: 3rem 0;
             margin-top: 3rem;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
         }
         
         .legal-tabs {
             display: flex;
             margin-bottom: 1.5rem;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #333;
         }
         
         .legal-tab {
@@ -159,24 +187,27 @@
             cursor: pointer;
             border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
+            color: var(--gray);
         }
         
         .legal-tab.active {
             border-bottom: 3px solid var(--primary);
             font-weight: bold;
-            color: var(--primary);
+            color: var(--light);
         }
         
         .legal-tab:hover:not(.active) {
+            color: var(--light);
             border-bottom: 3px solid var(--gray);
         }
         
         .legal-content {
             display: none;
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border: 1px solid #222;
         }
         
         .legal-content.active {
@@ -190,11 +221,12 @@
         }
         
         footer {
-            background: var(--dark);
+            background: var(--darker);
             color: var(--light);
             text-align: center;
             padding: 2rem 0;
             margin-top: 3rem;
+            border-top: 1px solid #222;
         }
         
         .footer-links {
@@ -205,7 +237,7 @@
         }
         
         .footer-links a {
-            color: var(--light);
+            color: var(--gray);
             text-decoration: none;
             transition: all 0.3s ease;
         }
@@ -228,6 +260,17 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection colors */
+        ::selection {
+            background: var(--primary);
+            color: white;
         }
         
         @media (max-width: 768px) {
@@ -385,6 +428,10 @@
             document.querySelectorAll('section').forEach(section => {
                 observer.observe(section);
             });
+            
+            // Set dark mode as default
+            document.documentElement.style.setProperty('--light', '#E0E0E0');
+            document.documentElement.style.setProperty('--dark', '#000000');
         });
     </script>
 </body>
