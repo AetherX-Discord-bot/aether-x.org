@@ -1,227 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bot Credits</title>
+    <!-- [Keep all your existing head content] -->
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body Styling */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--background);
-            color: var(--text-color);
-            line-height: 1.8;
-            margin: 20px;
-            transition: background 0.3s, color 0.3s; /* Smooth transition */
-        }
-
-        :root {
-            --background: linear-gradient(to bottom, #f9f9f9, #e6e6e6);
-            --text-color: #333;
-            --heading-color: #222;
-            --link-color: #007BFF;
-            --pre-background: #2c3e50;
-            --pre-color: #ecf0f1;
-            --table-header: #f8f9fa;
-            --table-row-alt: #f2f2f2;
-            --item-background: rgba(0, 0, 0, 0.1); /* Light background for items */
-            --item-hover-background: rgba(0, 0, 0, 0.2); /* Hover effect background */
-        }
-
-        [data-theme="dark"] {
-            --background: #121212;
-            --text-color: #e0e0e0;
-            --heading-color: #ffffff;
-            --link-color: #bb86fc;
-            --pre-background: #1e1e1e;
-            --pre-color: #f8f8f2;
-            --table-header: #333;
-            --table-row-alt: #222;
-            --item-background: rgba(255, 255, 255, 0.1); /* Darker background for items */
-            --item-hover-background: rgba(255, 255, 255, 0.2); /* Hover effect background */
-        }
-
-        /* Headings */
-        h1, h2, h3 {
-            color: var(--heading-color);
-        }
-
-        h1 {
-            font-size: 2.5em;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            font-size: 1.8em;
-            margin: 20px 0 10px;
-        }
-
-        h3 {
-            font-size: 1.4em;
-            margin: 10px 0;
-        }
-
-        /* Paragraphs and Links */
-        p {
-            margin: 10px 0;
-        }
-
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Preformatted Text */
-        pre {
-            background: var(--pre-background);
-            color: var(--pre-color);
-            padding: 15px;
-            border-radius: 5px;
-            overflow: auto;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        /* Table Styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: var(--table-header);
-            color: var(--heading-color);
-        }
-
-        tr:nth-child(even) {
-            background-color: var(--table-row-alt);
-        }
-
-        /* Credits Section */
-        .credits-container {
-            margin-top: 30px;
-        }
-
-        .credits-item {
-            background-color: var(--item-background);
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 15px;
-            transition: background-color 0.3s ease;
-        }
-
-        .credits-item:hover {
-            background-color: var(--item-hover-background);
-        }
-
-        .credits-item span {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .credits-item .description {
-            font-style: italic;
-            color: var(--link-color);
-        }
-
-        .credits-item .discord-link {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-
-        .credits-item .discord-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Theme Toggle Switch */
-        .theme-switch {
-            position: fixed;
-            top: 10px;
-            right: 20px;
+        /* Add this new style to your existing CSS */
+        .dev-container {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-            color: var(--text-color);
+            gap: 15px;
+            margin-bottom: 15px;
         }
-
-        .theme-switch input {
-            width: 40px;
-            height: 20px;
-            position: relative;
-            appearance: none;
-            background: #ccc;
-            outline: none;
-            cursor: pointer;
-            border-radius: 20px;
-            transition: background 0.3s;
-        }
-
-        .theme-switch input:checked {
-            background: #4caf50;
-        }
-
-        .theme-switch input:before {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 14px;
-            height: 14px;
-            background: white;
+        
+        .dev-avatar {
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
-            transition: transform 0.3s;
+            object-fit: cover;
+            border: 3px solid var(--link-color);
+            transition: transform 0.3s ease;
         }
-
-        .theme-switch input:checked:before {
-            transform: translateX(20px);
+        
+        .dev-avatar:hover {
+            transform: scale(1.1);
         }
+        
+        .dev-info {
+            flex: 1;
+        }
+        
+        /* [Keep all your other existing styles] */
     </style>
 </head>
 <body>
     <div class="credits-container">
         <h1>Bot Credits</h1>
-        <ul>
-            <li class="credits-item">
-                <span>Adrogalaxi <span class="description">(The man that started it [and ended it])</span>:</span>
-                <a class="discord-link" href="https://discordapp.com/users/435125886996709377" target="_blank">435125886996709377</a>
-            </li>
-            <li class="credits-item">
-                <span>lmutt090 <span class="description">(First Side Dev)</span>:</span>
-                <a class="discord-link" href="https://discordapp.com/users/1286383453016686705" target="_blank">1286383453016686705</a>
-            </li>
-            <li class="credits-item">
-                <span>Desmecito <span class="description">(The funny man who likes to help)</span>:</span>
-                <a class="discord-link" href="https://discordapp.com/users/1123769629165244497" target="_blank">1123769629165244497</a>
-            </li>
-            <li class="credits-item">
-                <span>Snow <span class="description">(The knowledgeable one)</span>:</span>
-                <a class="discord-link" href="https://discordapp.com/users/811016330517676073" target="_blank">811016330517676073</a>
-            </li>
-            <li class="credits-item">
-                <span>theunknownman. <span class="description">(What is he doing again? I "forgor")</span>:</span>
-                <a class="discord-link" href="https://discordapp.com/users/1274922263011004500" target="_blank">1274922263011004500</a>
-            </li>
-        </ul>
+        
+        <!-- Androgalaxi -->
+        <div class="credits-item">
+            <div class="dev-container">
+                <img src="https://cdn.discordapp.com/avatars/435125886996709377/a_discord_avatar_id.webp?size=256" 
+                     alt="Androgalaxi" class="dev-avatar">
+                <div class="dev-info">
+                    <span>Androgalaxi <span class="description">(The man that started it [and ended it])</span></span>
+                    <a class="discord-link" href="https://discordapp.com/users/435125886996709377" target="_blank">435125886996709377</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- lmutt090 -->
+        <div class="credits-item">
+            <div class="dev-container">
+                <img src="https://cdn.discordapp.com/avatars/1286383453016686705/a_discord_avatar_id.webp?size=256" 
+                     alt="lmutt090" class="dev-avatar">
+                <div class="dev-info">
+                    <span>lmutt090 <span class="description">(First Side Dev)</span></span>
+                    <a class="discord-link" href="https://discordapp.com/users/1286383453016686705" target="_blank">1286383453016686705</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Desmecito -->
+        <div class="credits-item">
+            <div class="dev-container">
+                <img src="https://cdn.discordapp.com/avatars/1123769629165244497/a_discord_avatar_id.webp?size=256" 
+                     alt="Desmecito" class="dev-avatar">
+                <div class="dev-info">
+                    <span>Desmecito <span class="description">(The funny man who likes to help)</span></span>
+                    <a class="discord-link" href="https://discordapp.com/users/1123769629165244497" target="_blank">1123769629165244497</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Snow -->
+        <div class="credits-item">
+            <div class="dev-container">
+                <img src="https://cdn.discordapp.com/avatars/811016330517676073/a_discord_avatar_id.webp?size=256" 
+                     alt="Snow" class="dev-avatar">
+                <div class="dev-info">
+                    <span>Snow <span class="description">(The knowledgeable one)</span></span>
+                    <a class="discord-link" href="https://discordapp.com/users/811016330517676073" target="_blank">811016330517676073</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- theunknownman -->
+        <div class="credits-item">
+            <div class="dev-container">
+                <img src="https://cdn.discordapp.com/avatars/1274922263011004500/a_discord_avatar_id.webp?size=256" 
+                     alt="theunknownman" class="dev-avatar">
+                <div class="dev-info">
+                    <span>theunknownman. <span class="description">(What is he doing again? I "forgor")</span></span>
+                    <a class="discord-link" href="https://discordapp.com/users/1274922263011004500" target="_blank">1274922263011004500</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
