@@ -5,31 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bot Credits</title>
     <style>
-        .dev-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .dev-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--link-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .dev-avatar:hover {
-            transform: scale(1.1);
-        }
-        
-        .dev-info {
-            flex: 1;
-        }
-        
-        /* [Keep all your other existing styles] */
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #36393f;
+    color: #dcddde;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Container Styles */
+.credits-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #2f3136;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #40444b;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 30px;
+    color: #b9bbbe;
+}
+
+/* Developer Item Styles */
+.credits-item {
+    background-color: #40444b;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.credits-item:hover {
+    background-color: #484c54;
+}
+
+.dev-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.dev-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #5865f2;
+    transition: transform 0.3s ease;
+}
+
+.dev-avatar:hover {
+    transform: scale(1.1);
+}
+
+.dev-info {
+    flex: 1;
+}
+
+.dev-info span {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.description {
+    font-weight: normal;
+    color: #b9bbbe;
+    font-size: 14px;
+}
+
+/* Link Styles */
+.discord-link {
+    color: #5865f2;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.discord-link:hover {
+    color: #4752c4;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .dev-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .dev-avatar {
+        margin-bottom: 10px;
+    }
+}
     </style>
 </head>
 <body>
