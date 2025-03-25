@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AetherX Updates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #5865F2;
+            --primary-dark: #4752C4;
+            --dark: #000000;
+            --darker: #0A0A0A;
+            --light: #E0E0E0;
+            --gray: #666666;
+            --card-bg: #121212;
+            --glow: rgba(88, 101, 242, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--darker), #000000);
+            color: var(--light);
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin: 1rem 0;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--light);
+            transform: translateX(-3px);
+        }
+
+        .latest-update {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 20px var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .latest-update::before {
+            content: 'LATEST';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .update-date {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .update-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .updates-list {
+            margin-top: 3rem;
+        }
+
+        .update-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #222;
+            transition: all 0.3s;
+            opacity: 0.9;
+        }
+
+        .update-card:hover {
+            opacity: 1;
+            border-color: var(--gray);
+        }
+
+        .update-card:nth-child(odd) {
+            animation-delay: 0.2s;
+        }
+
+        footer {
+            background: var(--darker);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #222;
+        }
+
+        /* Animations */
+        .animate-delay-1 { animation-delay: 0.3s !important; }
+        .animate-delay-2 { animation-delay: 0.6s !important; }
+        .animate-delay-3 { animation-delay: 0.9s !important; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .latest-update {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="animate__animated animate__fadeIn">
+        <div class="container">
+            <h1><i class="fab fa-discord"></i> AetherX Updates</h1>
+            <p>Stay informed about the latest changes</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-btn animate__animated animate__fadeInLeft">
+            <i class="fas fa-arrow-left"></i> Back to Main Page
+        </a>
+
+        <!-- Latest Update (Spotlight) -->
+        <div class="latest-update animate__animated animate__zoomIn">
+            <div class="update-date">March 25, 2025</div>
+            <h2 class="update-title">Version 2.0 Released!</h2>
+            <p>Complete overhaul with new minigames system, improved moderation tools, and slash command support. The bot now features 10+ new commands and a revamped economy system.</p>
+        </div>
+
+        <!-- Older Updates -->
+        <div class="updates-list">
+            <h2 class="animate__animated animate__fadeIn">Previous Updates</h2>
+            
+            <div class="update-card animate__animated animate__fadeInUp">
+                <div class="update-date">March 18, 2025</div>
+                <h3 class="update-title">Economy System Beta</h3>
+                <p>Launched the new economy system in beta. Users can now earn currency through activities and spend it in the shop.</p>
+            </div>
+
+            <div class="update-card animate__animated animate__fadeInUp animate-delay-1">
+                <div class="update-date">March 10, 2025</div>
+                <h3 class="update-title">Bug Fixes</h3>
+                <p>Fixed several issues with the moderation module and improved response times for all commands.</p>
+            </div>
+
+            <div class="update-card animate__animated animate__fadeInUp animate-delay-2">
+                <div class="update-date">March 1, 2025</div>
+                <h3 class="update-title">New Minigames</h3>
+                <p>Added 3 new minigames: Trivia, Blackjack, and Word Chain. Compete with friends for high scores!</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="animate__animated animate__fadeIn animate__delay-1s">
+        <div class="container">
+            <p>© 2025 AetherX. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add intersection observer for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.update-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
