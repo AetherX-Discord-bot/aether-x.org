@@ -4,65 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AetherX Bot Privacy Policy</title>
-    <style id="theme-style">
-        /* Default Light Mode */
+    <style>
+        :root {
+            --primary: #5865F2;
+            --primary-dark: #4752C4;
+            --dark: #000000;
+            --darker: #0A0A0A;
+            --light: #E0E0E0;
+            --gray: #666666;
+            --card-bg: #121212;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--dark);
+            color: var(--light);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
+        
         header {
-            background-color: #333;
-            color: #fff;
+            background: linear-gradient(135deg, var(--darker), #000000);
+            color: var(--light);
             text-align: center;
-            padding: 1rem;
+            padding: 2rem 1rem;
+            border-bottom: 1px solid var(--gray);
         }
+        
         main {
             padding: 2rem;
-            background-color: #fff;
+            background-color: var(--card-bg);
             max-width: 900px;
             margin: 2rem auto;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Allow the main content to expand */
+            border: 1px solid #222;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            flex: 1;
         }
+        
         h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
+            color: var(--light);
         }
+        
         h2 {
             font-size: 1.5rem;
-            color: #444;
+            color: var(--primary);
             margin-top: 2rem;
+            font-weight: 600;
         }
+        
         p {
             margin-bottom: 1rem;
             font-size: 1rem;
+            color: var(--gray);
         }
+        
         ul {
             list-style-type: disc;
             margin-left: 2rem;
             font-size: 1rem;
+            color: var(--gray);
         }
+        
+        code {
+            background-color: #333;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #f8f8f2;
+        }
+        
         a {
-            color: #007bff;
+            color: var(--primary);
             text-decoration: none;
+            transition: color 0.2s;
         }
+        
         a:hover {
+            color: var(--light);
             text-decoration: underline;
         }
+        
         footer {
             text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: #fff;
+            padding: 1.5rem;
+            background: var(--darker);
+            color: var(--light);
             width: 100%;
+            border-top: 1px solid #222;
+        }
+        
+        strong {
+            color: var(--light);
+        }
+        
+        /* Selection colors */
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -70,6 +122,7 @@
 
     <header>
         <h1>AetherX Bot Privacy Policy</h1>
+        <p>Last Updated: March 24, 2025</p>
     </header>
 
     <main>
@@ -94,13 +147,13 @@
                 </ul>
             </li>
         </ul>
-        <p>All other data is retrieved from <strong>Discord's public information</strong>, and is used strictly for the Bot’s functionality.</p>
+        <p>All other data is retrieved from <strong>Discord's public information</strong>, and is used strictly for the Bot's functionality.</p>
 
         <h2>2. Data Security</h2>
         <p>The data we collect is used solely to enhance the user experience and improve Bot functionality. This data is stored securely and only accessed as needed for Bot management.</p>
 
         <h2>3. No Data Sharing</h2>
-        <p>Since AetherX Bot does not share or sell any user data to third parties, all collected data is kept within the Bot’s internal configuration and is used solely for Bot functionality.</p>
+        <p>Since AetherX Bot does not share or sell any user data to third parties, all collected data is kept within the Bot's internal configuration and is used solely for Bot functionality.</p>
 
         <h2>4. No Data Retention</h2>
         <p>AetherX Bot does not retain user data beyond its immediate use for Bot-related purposes. All data is stored temporarily as necessary and is not kept longer than required.</p>
@@ -109,14 +162,12 @@
         <p>We may update this Privacy Policy from time to time to reflect changes in functionality or compliance requirements. Any updates will be communicated via appropriate channels, such as the Bot or its support server.</p>
 
         <h2>6. Contact Us</h2>
-        <p>If you have any questions or concerns about this Privacy Policy or the Bot’s functionality, please contact us at:</p>
+        <p>If you have any questions or concerns about this Privacy Policy or the Bot's functionality, please contact us at:</p>
         <p><strong>Email:</strong> <a href="mailto:AetherXdevs@outlook.com">AetherXdevs@outlook.com</a></p>
     </main>
 
     <footer>
         <p>&copy; 2025 AetherX Bot. All rights reserved.</p>
-        <p>Last Updated: March 24, 2025</p>
     </footer>
-
 </body>
 </html>
