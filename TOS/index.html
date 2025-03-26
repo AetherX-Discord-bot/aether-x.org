@@ -5,77 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AetherX Bot - Terms of Service</title>
-    <style id="theme-style">
-        /* Default Light Mode */
+    <style>
+        :root {
+            --primary: #5865F2;
+            --primary-dark: #4752C4;
+            --dark: #000000;
+            --darker: #0A0A0A;
+            --light: #E0E0E0;
+            --gray: #666666;
+            --card-bg: #121212;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--dark);
+            color: var(--light);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
+        
         header {
-            background-color: #333;
-            color: #fff;
+            background: linear-gradient(135deg, var(--darker), #000000);
+            color: var(--light);
             text-align: center;
-            padding: 1rem;
+            padding: 2rem 1rem;
+            border-bottom: 1px solid var(--gray);
         }
+        
         main {
             padding: 2rem;
-            background-color: #fff;
+            background-color: var(--card-bg);
             max-width: 900px;
             margin: 2rem auto;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex: 1 0 auto; /* Ensures the main section fills available space */
+            border: 1px solid #222;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            flex: 1 0 auto;
         }
+        
         h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
+            color: var(--light);
         }
+        
         h2 {
             font-size: 1.5rem;
-            color: #444;
+            color: var(--primary);
             margin-top: 2rem;
+            font-weight: 600;
         }
+        
         p {
             margin-bottom: 1rem;
             font-size: 1rem;
+            color: var(--gray);
         }
+        
         ul {
             list-style-type: disc;
             margin-left: 2rem;
             font-size: 1rem;
+            color: var(--gray);
         }
+        
         a {
-            color: #007bff;
+            color: var(--primary);
             text-decoration: none;
+            transition: color 0.2s;
         }
+        
         a:hover {
+            color: var(--light);
             text-decoration: underline;
         }
+        
         footer {
             text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: #fff;
+            padding: 1.5rem;
+            background: var(--darker);
+            color: var(--light);
             position: relative;
             width: 100%;
-            margin-top: auto; /* Makes sure footer is always at the bottom */
+            margin-top: auto;
+            border-top: 1px solid #222;
         }
+        
         .table-of-contents {
             padding-left: 0;
             margin-bottom: 2rem;
         }
+        
         .table-of-contents li {
             margin-bottom: 0.5rem;
         }
+        
         .table-of-contents a {
             font-weight: bold;
+        }
+        
+        /* Selection colors */
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -109,7 +152,7 @@
             <h2>2. Use of the Bot</h2>
             <p>AetherX Bot is designed for entertainment, administrative, and utility purposes within Discord servers. By using the Bot, you agree to:</p>
             <ul>
-                <li>Use the Bot in accordance with Discord’s <a href="https://discord.com/terms" target="_blank">Terms of Service</a>.</li>
+                <li>Use the Bot in accordance with Discord's <a href="https://discord.com/terms" target="_blank">Terms of Service</a>.</li>
                 <li>Avoid using the Bot for malicious, harmful, or illegal activities.</li>
             </ul>
         </section>
@@ -117,7 +160,7 @@
         <section id="data-and-privacy">
             <h2>3. Data and Privacy</h2>
             <p>AetherX Bot collects, stores, or processes user data. Data will be visible in the $profile command. Some hidden data is used for privacy or settings.</p>
-            <p>No other user data is stored, shared, or processed in any way. For more details, please refer to our <a href="#">Privacy Policy</a>.</p>
+            <p>No other user data is stored, shared, or processed in any way. For more details, please refer to our <a href="../PrivPOL/">Privacy Policy</a>.</p>
         </section>
 
         <section id="bot-availability">
@@ -129,7 +172,7 @@
             <h2>5. Prohibited Activities</h2>
             <p>You agree not to:</p>
             <ul>
-                <li>Use the Bot in a way that violates Discord’s Terms of Service or any applicable laws.</li>
+                <li>Use the Bot in a way that violates Discord's Terms of Service or any applicable laws.</li>
                 <li>Exploit the Bot for spamming, malicious purposes, or to harm other users or servers.</li>
             </ul>
         </section>
@@ -154,44 +197,5 @@
     <footer>
         <p>&copy; 2025 AetherX Bot. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Check for the dark mode cookie
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-        // Apply dark mode if the cookie is set to "dark"
-        function applyTheme() {
-            const theme = getCookie('theme');
-            if (theme === 'dark') {
-                const darkStyle = `
-                    body {
-                        background-color: #121212;
-                        color: #e0e0e0;
-                    }
-                    header {
-                        background-color: #1e1e1e;
-                    }
-                    main {
-                        background-color: #1e1e1e;
-                        box-shadow: none;
-                    }
-                    a {
-                        color: #bb86fc;
-                    }
-                    footer {
-                        background-color: #1e1e1e;
-                    }
-                `;
-                document.getElementById('theme-style').innerHTML += darkStyle;
-            }
-        }
-
-        // Execute theme application on page load
-        applyTheme();
-    </script>
 </body>
 </html>
