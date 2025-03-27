@@ -17,12 +17,12 @@
         :root {
             --primary: #5865F2;
             --primary-dark: #4752C4;
-            --dark: #000000; /* Pure black */
-            --darker: #0A0A0A; /* Slightly lighter black */
-            --light: #E0E0E0; /* Soft white for text */
+            --dark: #000000;
+            --darker: #0A0A0A;
+            --light: #E0E0E0;
             --gray: #666666;
             --success: #57F287;
-            --card-bg: #121212; /* Dark gray for cards */
+            --card-bg: #121212;
         }
         
         * {
@@ -269,12 +269,10 @@
             }
         }
         
-        /* Smooth scroll behavior */
         html {
             scroll-behavior: smooth;
         }
         
-        /* Selection colors */
         ::selection {
             background: var(--primary);
             color: white;
@@ -301,6 +299,15 @@
                 border-bottom: none;
             }
         }
+
+        /* 🔥 Added for server count */
+        .server-count {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        .server-count strong {
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -317,6 +324,12 @@
             <div class="bot-details">
                 <h2 class="animate__animated animate__fadeInRight">About AetherX</h2>
                 <p class="animate__animated animate__fadeInRight animate__delay-1s">AetherX is an "all in one" Discord bot. It offers many minigames, features, moderation, etc...</p>
+                
+                <!-- 🚀 Server Count Added Here -->
+                <div class="server-count animate__animated animate__fadeIn animate__delay-1s">
+                    <i class="fas fa-server"></i> Proudly serving <strong>21</strong> servers! <!-- ← Change this number -->
+                </div>
+                
                 <div class="animate__animated animate__fadeInUp animate__delay-2s">
                     <a href="https://discord.com/oauth2/authorize?client_id=1067646246254284840&permissions=582056601447606&integration_type=0&scope=bot" class="btn">
                         <i class="fas fa-robot"></i> Invite to Server
@@ -325,8 +338,8 @@
                        <i class="fas fa-users"></i> Support Server
                      </a>
                     <a href="updates" class="btn animate__animated animate__pulse animate__infinite">
-    <i class="fas fa-bullhorn"></i> Updates
-</a>
+                        <i class="fas fa-bullhorn"></i> Updates
+                    </a>
                 </div>
             </div>
         </section>
@@ -342,7 +355,7 @@
                     <li>Tic-Tac-Toe ⭕❌</li>
                     <li>Coin Flip 🪙</li>
                     <li>Trivia 🧠</li>
-                    <li>Rock-Paper-Scissors 🪨📄✂️</li>
+                    <li>Rock-Paper-scissors 🪨📄✂️</li>
                     <li>Word Of The Day 📖</li>
                   </ul>
                 </div>
@@ -419,7 +432,6 @@
     </footer>
 
     <script>
-        // Tab functionality for legal section
         function openTab(evt, tabName) {
             const tabContents = document.getElementsByClassName("legal-content");
             for (let i = 0; i < tabContents.length; i++) {
@@ -435,7 +447,6 @@
             evt.currentTarget.classList.add("active");
         }
         
-        // Scroll animations
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -451,7 +462,6 @@
                 observer.observe(section);
             });
             
-            // Set dark mode as default
             document.documentElement.style.setProperty('--light', '#E0E0E0');
             document.documentElement.style.setProperty('--dark', '#000000');
         });
