@@ -39,54 +39,86 @@
             min-height: 100vh;
         }
         
-        /* Status Popup Styles */
+        /* Circular Popup Styles */
         .status-popup {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
             background: #d32f2f;
             color: white;
-            padding: 15px;
-            text-align: center;
+            border-radius: 50%;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            font-weight: bold;
-            animation: slideDown 0.5s forwards;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .status-popup:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        .status-popup i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
         }
 
         .status-popup-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .status-popup-close {
-            background: none;
-            border: none;
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 300px;
+            background: #121212;
             color: white;
-            font-size: 1.2rem;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            border: 1px solid #d32f2f;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .status-popup-content p {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .status-popup-content button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
             cursor: pointer;
-            padding: 0 10px;
-            margin-left: 15px;
+            float: right;
         }
 
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(211, 47, 47, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
         }
 
-        @keyframes fadeOutUp {
-            from { transform: translateY(0); }
-            to { transform: translateY(-100%); opacity: 0; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(20px); }
         }
 
         .closing {
-            animation: fadeOutUp 0.5s forwards;
+            animation: fadeOut 0.3s forwards;
         }
         
         header {
@@ -97,7 +129,6 @@
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid var(--gray);
-            margin-top: 50px; /* Added to account for popup */
         }
         
         header::after {
@@ -359,36 +390,35 @@
                 border-bottom: none;
             }
             
+            .status-popup {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            
             .status-popup-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .status-popup-close {
-                margin-top: 10px;
-                margin-left: 0;
-            }
-            
-            header {
-                margin-top: 70px; /* More space for popup on mobile */
+                bottom: 80px;
+                right: 20px;
+                width: calc(100% - 40px);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Status Popup -->
-    <div class="status-popup" id="statusPopup">
-        <div class="status-popup-content">
-            <div>
-                <i class="fas fa-exclamation-triangle"></i> 
-                Due to an unknown cause, AetherX is currently offline for the main version of the bot due to Python having issues. 
-                Until further notice, the old version that's running on JavaScript will remain up. 
-                We apologize for the inconvenience. -AetherX Team
-            </div>
-            <button class="status-popup-close" onclick="closePopup()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+    <!-- Circular Status Popup -->
+    <div class="status-popup" id="statusPopup" onclick="showPopup()">
+        <i class="fas fa-exclamation"></i>
+    </div>
+
+    <div class="status-popup-content" id="statusPopupContent">
+        <p>
+            <i class="fas fa-exclamation-triangle"></i> 
+            Due to an unknown cause, AetherX is currently offline for the main version of the bot due to Python having issues. 
+            Until further notice, the old version that's running on JavaScript will remain up. 
+            We apologize for the inconvenience. -AetherX Team
+        </p>
+        <button onclick="closePopup()">Got it</button>
     </div>
 
     <header class="animate__animated animate__fadeIn">
@@ -512,23 +542,36 @@
     </footer>
 
     <script>
-        // Show the popup when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const popup = document.getElementById('statusPopup');
+        // Check if popup was previously closed
+        if (!localStorage.getItem('popupClosed')) {
+            document.addEventListener('DOMContentLoaded', function() {
+                const popup = document.getElementById('statusPopup');
+                popup.style.display = 'block';
+                
+                // Auto-show after 3 seconds
+                setTimeout(() => {
+                    showPopup();
+                }, 3000);
+            });
+        }
+
+        function showPopup() {
+            const popup = document.getElementById('statusPopupContent');
             popup.style.display = 'block';
-            
-            // Auto-hide after 10 seconds
-            setTimeout(() => {
-                closePopup();
-            }, 10000);
-        });
+        }
 
         function closePopup() {
-            const popup = document.getElementById('statusPopup');
+            const popup = document.getElementById('statusPopupContent');
+            const circle = document.getElementById('statusPopup');
+            
             popup.classList.add('closing');
+            circle.classList.add('closing');
+            
             setTimeout(() => {
                 popup.style.display = 'none';
-            }, 500);
+                circle.style.display = 'none';
+                localStorage.setItem('popupClosed', 'true');
+            }, 300);
         }
 
         function openTab(evt, tabName) {
