@@ -47,7 +47,7 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background: #d32f2f;
+            background: #57F287; /* Changed to green for "online" status */
             color: white;
             border-radius: 50%;
             z-index: 1000;
@@ -82,29 +82,35 @@
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            border: 1px solid #d32f2f;
+            border: 1px solid #57F287; /* Changed to green border */
             animation: fadeIn 0.3s ease-out;
         }
 
         .status-popup-content p {
             color: white;
             margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         .status-popup-content button {
-            background: #d32f2f;
+            background: #57F287; /* Changed to green */
             color: white;
             border: none;
             padding: 8px 15px;
             border-radius: 5px;
             cursor: pointer;
             float: right;
+            transition: all 0.3s ease;
+        }
+
+        .status-popup-content button:hover {
+            background: #48d878;
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(211, 47, 47, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0.7); } /* Green pulse */
+            70% { box-shadow: 0 0 0 15px rgba(87, 242, 135, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0); }
         }
 
         @keyframes fadeIn {
@@ -121,6 +127,7 @@
             animation: fadeOut 0.3s forwards;
         }
         
+        /* Rest of your existing CSS remains unchanged */
         header {
             background: linear-gradient(135deg, var(--darker), #000000);
             color: var(--light);
@@ -408,19 +415,21 @@
 <body>
     <!-- Circular Status Popup -->
     <div class="status-popup" id="statusPopup" onclick="showPopup()">
-        <i class="fas fa-exclamation"></i>
+        <i class="fas fa-check"></i>
     </div>
-    <!--
+    
     <div class="status-popup-content" id="statusPopupContent">
         <p>
-            <i class="fas fa-exclamation-triangle"></i> 
-            Due to an unknown cause, AetherX is currently offline for the main version of the bot due to Python having issues. 
-            Until further notice, the old version that's running on JavaScript will remain up. 
-            We apologize for the inconvenience. -AetherX Team
+            <i class="fas fa-check-circle"></i> 
+            We've found the issue. AetherX is now back online. Please enjoy the music commands! An update will be posted to the updates page shortly.
+            <br><br>
+            Enjoy the update and thank you for sticking with us!
+            <br>
+            -AetherX Team
         </p>
         <button onclick="closePopup()">Got it</button>
     </div>
--->
+
     <header class="animate__animated animate__fadeIn">
         <div class="container">
             <h1 class="animate__animated animate__fadeInDown"><i class="fab fa-discord"></i> AetherX</h1>
@@ -546,11 +555,18 @@
         if (!localStorage.getItem('popupClosed')) {
             document.addEventListener('DOMContentLoaded', function() {
                 const popup = document.getElementById('statusPopup');
-                popup.style.display = 'block';
+                const content = document.getElementById('statusPopupContent');
                 
-                // Auto-show after 3 seconds
+                // Show both elements initially
+                popup.style.display = 'block';
+                content.style.display = 'block';
+                
+                // Auto-show after 3 seconds if not shown already
                 setTimeout(() => {
-                    showPopup();
+                    if (!localStorage.getItem('popupShown')) {
+                        showPopup();
+                        localStorage.setItem('popupShown', 'true');
+                    }
                 }, 3000);
             });
         }
@@ -558,18 +574,18 @@
         function showPopup() {
             const popup = document.getElementById('statusPopupContent');
             popup.style.display = 'block';
+            popup.classList.remove('closing');
+            popup.classList.add('animate__animated', 'animate__fadeIn');
         }
 
         function closePopup() {
             const popup = document.getElementById('statusPopupContent');
-            const circle = document.getElementById('statusPopup');
             
+            // Only hide the content, keep the circle visible
             popup.classList.add('closing');
-            circle.classList.add('closing');
             
             setTimeout(() => {
                 popup.style.display = 'none';
-                circle.style.display = 'none';
                 localStorage.setItem('popupClosed', 'true');
             }, 300);
         }
@@ -609,4 +625,5 @@
         });
     </script>
 </body>
+</html>
 </html>
