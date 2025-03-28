@@ -39,6 +39,44 @@
             min-height: 100vh;
         }
         
+        /* Navigation Bar */
+        .nav-container {
+            background-color: var(--darker);
+            border-bottom: 1px solid #333;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(88, 101, 242, 0.2);
+            color: var(--primary);
+        }
+        
+        .nav-link i {
+            font-size: 0.9rem;
+        }
+        
         /* Circular Popup Styles */
         .status-popup {
             display: none;
@@ -47,7 +85,7 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background: #57F287; /* Changed to green for "online" status */
+            background: #57F287;
             color: white;
             border-radius: 50%;
             z-index: 1000;
@@ -82,7 +120,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            border: 1px solid #57F287; /* Changed to green border */
+            border: 1px solid #57F287;
             animation: fadeIn 0.3s ease-out;
         }
 
@@ -93,7 +131,7 @@
         }
 
         .status-popup-content button {
-            background: #57F287; /* Changed to green */
+            background: #57F287;
             color: white;
             border: none;
             padding: 8px 15px;
@@ -108,7 +146,7 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0.7); } /* Green pulse */
+            0% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(87, 242, 135, 0); }
             100% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0); }
         }
@@ -127,7 +165,6 @@
             animation: fadeOut 0.3s forwards;
         }
         
-        /* Rest of your existing CSS remains unchanged */
         header {
             background: linear-gradient(135deg, var(--darker), #000000);
             color: var(--light);
@@ -367,7 +404,7 @@
             color: white;
         }
         
-        /* 🔥 Added for server count */
+        /* Server count */
         .server-count {
             margin: 1rem 0;
             font-size: 1.1rem;
@@ -409,10 +446,33 @@
                 right: 20px;
                 width: calc(100% - 40px);
             }
+            
+            .nav-links {
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            
+            .nav-link {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <div class="nav-container animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="nav-links">
+                <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="updates" class="nav-link"><i class="fas fa-bullhorn"></i> Updates</a>
+                <a href="https://aetherx-discord-bot.github.io/web/blog/" class="nav-link"><i class="fas fa-blog"></i> Dev Blog</a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1067646246254284840&permissions=582056601447606&integration_type=0&scope=bot" class="nav-link"><i class="fas fa-robot"></i> Invite</a>
+                <a href="https://discord.gg/yFY8Fnbtp9" class="nav-link"><i class="fas fa-users"></i> Support</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Circular Status Popup -->
     <div class="status-popup" id="statusPopup" onclick="showPopup()">
         <i class="fas fa-check"></i>
@@ -444,9 +504,8 @@
                 <h2 class="animate__animated animate__fadeInRight">About AetherX</h2>
                 <p class="animate__animated animate__fadeInRight animate__delay-1s">AetherX is an "all in one" Discord bot. It offers many minigames, features, moderation, etc...</p>
                 
-                <!-- 🚀 Server Count Added Here -->
                 <div class="server-count animate__animated animate__fadeIn animate__delay-1s">
-                    <i class="fas fa-server"></i> Proudly serving <strong>21</strong> servers! <!-- ← Change this number -->
+                    <i class="fas fa-server"></i> Proudly serving <strong>21</strong> servers!
                 </div>
                 
                 <div class="animate__animated animate__fadeInUp animate__delay-2s">
@@ -545,6 +604,7 @@
                 <a href="../PrivPOL/">Privacy</a>
                 <a href="../Credits/">Credits</a>
                 <a href="https://github.com/AetherX-Discord-bot/Discord-Bot"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://aetherx-discord-bot.github.io/web/blog/"><i class="fas fa-blog"></i> Dev Blog</a>
             </div>
             <p>© 2025 AetherX. All rights reserved.</p>
         </div>
@@ -625,5 +685,4 @@
         });
     </script>
 </body>
-</html>
 </html>
