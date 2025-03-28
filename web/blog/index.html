@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Blog - Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-darker: #0a0a0a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-color: #bb86fc;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--accent-color), #03dac6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .coming-soon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .eyes-emoji {
+            font-size: 3rem;
+            animation: blink 4s infinite;
+            transform-origin: center;
+        }
+        
+        @keyframes blink {
+            0%, 45%, 55%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            48%, 52% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1, 0.1);
+                opacity: 0.6;
+            }
+        }
+        
+        p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .progress {
+            height: 4px;
+            width: 200px;
+            background-color: rgba(255,255,255,0.1);
+            margin: 2rem auto;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent-color), #03dac6);
+            animation: progress 3s ease-in-out infinite;
+        }
+        
+        @keyframes progress {
+            0% {
+                width: 0;
+                margin-left: 0;
+            }
+            50% {
+                width: 100%;
+                margin-left: 0;
+            }
+            100% {
+                width: 0;
+                margin-left: 100%;
+            }
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background-color: var(--bg-darker);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="animate__animated animate__fadeInDown">
+            <span class="coming-soon">
+                <span class="animate__animated animate__pulse animate__infinite">Blogs coming soon</span>
+                <span class="eyes-emoji">👀</span>
+            </span>
+        </h1>
+        <p class="animate__animated animate__fadeIn animate__delay-1s">
+            Our developer blog is currently in the works. We're preparing exciting content about upcoming features, 
+            behind-the-scenes development, and technical insights.
+        </p>
+        <div class="progress animate__animated animate__fadeIn animate__delay-2s">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+    
+    <footer class="animate__animated animate__fadeIn animate__delay-3s">
+        © 2025 AetherX. All rights reserved.
+    </footer>
+</body>
+</html>
