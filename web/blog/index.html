@@ -3,144 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Blog - Coming Soon</title>
+    <title>AetherX Developer Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
-            --bg-dark: #121212;
-            --bg-darker: #0a0a0a;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --accent-color: #bb86fc;
+            --primary: #5865F2;
+            --primary-dark: #4752C4;
+            --dark: #000000;
+            --darker: #0A0A0A;
+            --light: #E0E0E0;
+            --gray: #666666;
+            --accent: #BB86FC;
+            --card-bg: #121212;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-        }
-        
-        .container {
-            max-width: 800px;
-            padding: 2rem;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--accent-color), #03dac6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-        }
-        
-        .coming-soon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .eyes-emoji {
-            font-size: 3rem;
-            animation: blink 4s infinite;
-            transform-origin: center;
-        }
-        
-        @keyframes blink {
-            0%, 45%, 55%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            48%, 52% {
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: scale(1, 0.1);
-                opacity: 0.6;
-            }
-        }
-        
-        p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            background-color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
         }
         
-        .progress {
-            height: 4px;
-            width: 200px;
-            background-color: rgba(255,255,255,0.1);
-            margin: 2rem auto;
-            border-radius: 2px;
+        /* Navigation */
+        .nav-container {
+            background-color: var(--darker);
+            border-bottom: 1px solid #333;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(88, 101, 242, 0.2);
+            color: var(--primary);
+        }
+        
+        .nav-link i {
+            font-size: 0.9rem;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--darker), #000000);
+            color: var(--light);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23000000" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23000000" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23000000"/></svg>');
+            background-size: cover;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .header-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        /* Blog Content */
+        .blog-content {
+            padding: 3rem 0;
+        }
+        
+        /* Spotlight Post */
+        .spotlight {
+            margin: 3rem 0;
+        }
+        
+        .spotlight-card {
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
             overflow: hidden;
         }
         
-        .progress-bar {
-            height: 100%;
-            width: 0;
-            background: linear-gradient(90deg, var(--accent-color), #03dac6);
-            animation: progress 3s ease-in-out infinite;
+        .spotlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(187, 134, 252, 0.2);
         }
         
-        @keyframes progress {
-            0% {
-                width: 0;
-                margin-left: 0;
-            }
-            50% {
-                width: 100%;
-                margin-left: 0;
-            }
-            100% {
-                width: 0;
-                margin-left: 100%;
-            }
+        /* Previous Posts */
+        .previous-posts {
+            margin: 3rem 0;
         }
         
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            padding: 1rem;
+        .post-card {
+            background: var(--card-bg);
+            border-left: 3px solid var(--primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.1);
+        }
+        
+        .post-date {
+            color: var(--gray);
             font-size: 0.9rem;
-            color: var(--text-secondary);
-            background-color: var(--bg-darker);
+            margin-bottom: 0.5rem;
+        }
+        
+        .post-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        
+        .post-content {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            color: var(--accent);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: var(--primary);
+        }
+        
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .hidden-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hidden-content.visible {
+            max-height: 2000px;
+        }
+        
+        .hidden-content-inner {
+            padding-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.2s;
+        }
+        
+        .hidden-content.visible .hidden-content-inner {
+            opacity: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #222;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                gap: 0.8rem;
+            }
+            
+            .nav-link {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            header {
+                padding: 2rem 0;
+            }
+            
+            .spotlight-card, .post-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="animate__animated animate__fadeInDown">
-            <span class="coming-soon">
-                <span class="animate__animated animate__pulse animate__infinite">Blogs coming soon</span>
-                <span class="eyes-emoji">👀</span>
-            </span>
-        </h1>
-        <p class="animate__animated animate__fadeIn animate__delay-1s">
-            Our developer blog is currently in the works. We're preparing exciting content about upcoming features, 
-            behind-the-scenes development, and technical insights.
-        </p>
-        <div class="progress animate__animated animate__fadeIn animate__delay-2s">
-            <div class="progress-bar"></div>
+    <!-- Navigation -->
+    <div class="nav-container animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="nav-links">
+                <a href="https://aetherx-discord-bot.github.io/web/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="updates" class="nav-link"><i class="fas fa-bullhorn"></i> Updates</a>
+                <a href="https://aetherx-discord-bot.github.io/web/blog/" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+                <a href="https://discord.com/oauth2/authorize?client_id=1067646246254284840&permissions=582056601447606&integration_type=0&scope=bot" class="nav-link"><i class="fas fa-robot"></i> Invite</a>
+                <a href="https://discord.gg/yFY8Fnbtp9" class="nav-link"><i class="fas fa-users"></i> Support</a>
+            </div>
         </div>
     </div>
+
+    <!-- Header -->
+    <header class="animate__animated animate__fadeIn">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown"><i class="fas fa-code-branch"></i> Developer Blog</h1>
+            <p class="header-subtitle animate__animated animate__fadeIn animate__delay-1s">Behind-the-scenes updates, technical insights, and future plans</p>
+        </div>
+    </header>
     
-    <footer class="animate__animated animate__fadeIn animate__delay-3s">
-        © 2025 AetherX. All rights reserved.
+    <!-- Blog Content -->
+    <main class="container blog-content">
+        <!-- Spotlight Post -->
+        <section class="spotlight animate__animated animate__fadeIn">
+            <div class="spotlight-card">
+                <div class="post-date">March 28th, 2025</div>
+                <h2 class="post-title">The upcoming Update</h2>
+                <div class="post-content">
+                    <p>We're excited to share our development plans for the next update.</p>
+                </div>
+                <div class="hidden-content">
+                    <div class="hidden-content-inner">
+                        <p>Here's what you can expect in our upcoming release:</p>
+                        <ul>
+                            <p>This will be a bit of a mess so please bare with us.</p>
+                    <div>
+                            <p>We're calling our next update the "Gamblers Paradise". If you don't understand what that means, it means that our current minigames are being updated to make use of our new currency system. The Dabloons you have can be used for Slots and Blackjack rightnow. In the future there will be more options. Anyways... we're currently in the process of fixing the current bugs with the Blackjack minigame and making sure everyhting looks good (there's a lot of bugs!). As for slots, nothing currently works. However we'll be directing our focus to that after we fix the bugs with the dabloons and then we'll tackle the bugs as we're expecting that to happen. While you're here reading this, the music commands are still broken but we're working on those soon (there's just too much to do all at once). We'll post another blog once we have that sorted out don't worry. Another thing about the Dabloons. Don't worry we're already thinking of ways for our users to earn Dabloons. We'll spoil the current options. You'll be able to earn Dabloons from chatting (1 Dabloon per message every 10 seconds so it's passive), Highlow minigame (you'll gain 10 Dabloons each win), and levling up. We're also aware the level system is a little bit broken and we're working on it (DataBases aren't the easiest you know). If we had the ability to have a backend for the website for a dynamic end we'd start making a dashboard to allow more control over AetherX but we don't have any funds to work with so we're doing what we can.</p>
+                    <div>
+                            <p>Anyways have a great rest of your day/night. One last thing. We're looking for Beta Testers to help test new commands or minigames. Join the support server and let one of the developers or staff know!</p>
+                    <div>
+                            <p>-AetherX Team</p>
+                        </ul>
+                        <p>We're committed to making AetherX the most versatile Discord bot available, while maintaining our focus on performance and reliability.</p>
+                    </div>
+                </div>
+                <div class="read-more">
+                    Read full post <i class="fas fa-arrow-down"></i>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Previous Posts -->
+        <section class="previous-posts animate__animated animate__fadeIn animate__delay-1s">
+            <h2><i class="fas fa-history"></i> Previous Updates</h2>
+
+
+            
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="animate__animated animate__fadeIn animate__delay-2s">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://discord.gg/yFY8Fnbtp9"><i class="fab fa-discord"></i> Support Server</a>
+                <a href="../TOS/"><i class="fas fa-file-contract"></i> Terms</a>
+                <a href="../PrivPOL/"><i class="fas fa-lock"></i> Privacy</a>
+                <a href="../Credits/"><i class="fas fa-heart"></i> Credits</a>
+                <a href="https://github.com/AetherX-Discord-bot/Discord-Bot"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+            <p>© 2025 AetherX. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        // Toggle hidden content
+        document.querySelectorAll('.read-more').forEach(button => {
+            button.addEventListener('click', function() {
+                const content = this.previousElementSibling;
+                const icon = this.querySelector('i');
+                
+                content.classList.toggle('visible');
+                
+                if (content.classList.contains('visible')) {
+                    this.innerHTML = 'Show less <i class="fas fa-arrow-up"></i>';
+                } else {
+                    this.innerHTML = 'Read more <i class="fas fa-arrow-down"></i>';
+                }
+                
+                // Smooth icon rotation
+                icon.style.transform = content.classList.contains('visible') ? 
+                    'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+        
+        // Animate elements as they come into view
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.post-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
