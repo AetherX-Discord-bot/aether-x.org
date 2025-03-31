@@ -121,6 +121,26 @@
             border-color: var(--gray);
         }
 
+        .fix {
+            color: #808080;
+        }
+
+        .remove {
+            color: #ff0000;
+        }
+
+        .new {
+            color: #008000;
+        }
+
+        .warn {
+            color: #ffa500;
+        }
+
+        .new-suggest {
+            color: #000080;
+        }
+
         .update-card:nth-child(odd) {
             animation-delay: 0.2s;
         }
@@ -167,16 +187,29 @@
         <div class="latest-update animate__animated animate__zoomIn">
             <div class="update-date">March 27, 2025</div>
             <h2 class="update-title">Version 0.4.7 release</h2>
-            <li>Necessary bug fixes to enhance your experience.</li>
-            <li>Removed old music commands running on JavaScript</li>
-            <li>Added music commands to the new version running on Python</li><br>
-            <p>If any bugs are found, we'll be sure to fix them about post about it here.</p><br>
-            <p>Also, keep an eye for out for a new section on the website 👀</p>
+            <li class="new">Added Gambling, get Gambling Gamblers</li>
+            <li class="new">Color coded text?</li>
+            <li class="fix">Fixed an internal error that was annoying.</li>
+            <li class="remove">This would be removed content.</li>
+            <li class="new">This would be new content.</li>
+            <li class="warn">This would be content related to broken content.</li>
+            <li class="fix">This would be fixed content.</li>
+            <li class="new-suggest">This would be added content that was suggested. <sub>Suggested by @lmutt090</sub></li>
         </div>
 
         <!-- Older Updates -->
         <div class="updates-list">
             <h2 class="animate__animated animate__fadeIn">Previous Updates</h2>
+
+            <div class="update-card animate__animated animate__fadeInUp">
+                <div class="update-date">March 27, 2025</div>
+                <h2 class="update-title">Version 0.4.7 release</h2>
+                <li>Necessary bug fixes to enhance your experience.</li>
+                <li>Removed old music commands running on JavaScript</li>
+                <li>Added music commands to the new version running on Python</li><br>
+                <p>If any bugs are found, we'll be sure to fix them about post about it here.</p><br>
+                <p>Also, keep an eye for out for a new section on the website 👀</p>
+            </div>
                         
             <div class="update-card animate__animated animate__fadeInUp">
                 <div class="update-date">March 25, 2025 2:09 PM EST US/CANADA</div>
