@@ -1,200 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bot Credits</title>
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "qut7zotmbu");
-    </script>
-    <style>
-        /* Base Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #36393f;
-            color: #dcddde;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bot Credits</title>
+        <script type="text/javascript">
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "qut7zotmbu");
+        </script>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('img.banner').forEach(img => {
+                    img.onerror = () => {
+                        img.style.display = 'none';
+                    };
+                });
+            });
+        </script>    
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #36393f;
+                color: #dcddde;
+                margin: 0;
+                padding: 20px;
+                line-height: 1.6;
+            }
 
-        /* Container Styles */
-        .credits-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #2f3136;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+            .credits-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background-color: #2f3136;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
 
-        h1, h2 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #40444b;
-            padding-bottom: 10px;
-        }
+            h1, h2 {
+                color: #ffffff;
+                margin-bottom: 20px;
+                border-bottom: 1px solid #40444b;
+                padding-bottom: 10px;
+            }
 
-        h2 {
-            margin-top: 30px;
-            color: #b9bbbe;
-        }
+            h2 {
+                margin-top: 30px;
+                color: #b9bbbe;
+            }
 
-        /* Developer Item Styles */
-        .credits-item {
-            background-color: #40444b;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            transition: background-color 0.3s ease;
-        }
+            .credits-item {
+                background-color: #40444b;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 15px;
+                transition: background-color 0.3s ease;
+            }
 
-        .credits-item:hover {
-            background-color: #484c54;
-        }
+            .credits-item:hover {
+                background-color: #484c54;
+            }
 
-        .dev-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .dev-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #5865f2;
-            transition: transform 0.3s ease;
-        }
-
-        .dev-avatarlmutt {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #ff00c8;
-            transition: transform 0.3s ease;
-        }
-
-        .dev-avatar:hover {
-            transform: scale(1.1);
-        }
-
-        .dev-info {
-            flex: 1;
-        }
-
-        .dev-info span {
-            font-weight: bold;
-            color: #ffffff;
-            font-size: 18px;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .description {
-            font-weight: normal;
-            color: #b9bbbe;
-            font-size: 14px;
-        }
-
-        /* Link Styles */
-        .discord-link {
-            color: #5865f2;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease;
-        }
-
-        .discord-link:hover {
-            color: #4752c4;
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
             .dev-container {
+                display: flex;
                 flex-direction: column;
-                text-align: center;
+                gap: 15px;
+                margin-bottom: 15px;
+            }
+
+            .banner {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+
+            .dev-info-container {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .dev-avatar, .dev-avatarlmutt {
+                width: 64px;
+                height: 64px;
+                border-radius: 50%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
             }
 
             .dev-avatar {
-                margin-bottom: 10px;
+                border: 3px solid #5865f2;
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="credits-container">
-        <h1>Bot Credits</h1>
-        
-        <!-- Androgalaxi -->
-        <div class="credits-item">
-            <div class="dev-container">
-                <img src="https://cdn.discordapp.com/avatars/435125886996709377/d3e367bdbe361539194db33e641b2d29?size=1024" 
-                     alt="Androgalaxi" class="dev-avatar">
-                <div class="dev-info">
-                    <span>Androgalaxi <span class="description">(The man that started it [and ended it])</span></span>
-                    <a class="discord-link" href="https://discordapp.com/users/435125886996709377" target="_blank">435125886996709377</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- lmutt090 -->
-        <div class="credits-item">
-            <div class="dev-container">
-                <img src="coustompictures/b14e12ae1e13cf693afbedc11de9b5fb.jpg" 
-                     alt="lmutt090" class="dev-avatarlmutt">
-                <div class="dev-info">
-                    <span>lmutt090 <span class="description">(Database Manager and Webpage Developer)</span></span>
-                    <a class="discord-link" href="https://discordapp.com/users/1286383453016686705" target="_blank">1286383453016686705</a>
-                </div>
-            </div>
-        </div>
 
-        <!-- Snow -->
-        <div class="credits-item">
-            <div class="dev-container">
-                <img src="coustompictures/images_9.jpg" 
-                     alt="Snow" class="dev-avatar">
-                <div class="dev-info">
-                    <span>Snow <span class="description">(The knowledgeable one)</span></span>
-                    <a class="discord-link" href="https://discordapp.com/users/811016330517676073" target="_blank">811016330517676073</a>
-                </div>
-            </div>
-        </div>
+            .dev-avatarlmutt {
+                border: 3px solid #ff00c8;
+            }
 
-        <h2>"Retired"</h2>
-        
-        <!-- Desmecito -->
-        <div class="credits-item">
-            <div class="dev-container">
-                <img src="https://cdn.discordapp.com/avatars/1123769629165244497/108faa59eb05920a81974f93d6c9ad64?size=1024" 
-                     alt="Desmecito" class="dev-avatar">
-                <div class="dev-info">
-                    <span>Desmecito <span class="description">(The funny man who likes to help)</span></span>
-                    <a class="discord-link" href="https://discordapp.com/users/1123769629165244497" target="_blank">1123769629165244497</a>
+            .dev-avatar:hover, .dev-avatarlmutt:hover {
+                transform: scale(1.1);
+            }
+
+            .dev-info {
+                flex: 1;
+            }
+
+            .dev-info span {
+                font-weight: bold;
+                color: #ffffff;
+                font-size: 18px;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .description {
+                font-weight: normal;
+                color: #b9bbbe;
+                font-size: 14px;
+            }
+
+            .discord-link {
+                color: #5865f2;
+                text-decoration: none;
+                font-size: 14px;
+                transition: color 0.2s ease;
+            }
+
+            .discord-link:hover {
+                color: #4752c4;
+                text-decoration: underline;
+            }
+
+            @media (max-width: 600px) {
+                .dev-info-container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="credits-container">
+            <h1>Bot Credits</h1>
+    
+            <!-- Androgalaxi -->
+            <div class="credits-item">
+                <div class="dev-container">
+                    <img src="" alt="Androgalaxi Banner" class="banner">
+                    <div class="dev-info-container">
+                        <img src="https://cdn.discordapp.com/avatars/435125886996709377/d3e367bdbe361539194db33e641b2d29?size=1024" alt="Androgalaxi" class="dev-avatar">
+                        <div class="dev-info">
+                            <span>Androgalaxi <span class="description">(The man that started it [and ended it])</span></span>
+                            <a class="discord-link" href="https://discordapp.com/users/435125886996709377" target="_blank">435125886996709377</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- lmutt090 -->
+            <div class="credits-item">
+                <div class="dev-container">
+                    <img src="coustompictures/29242f8d3cfe4faa3a9d8fd770a716da.jpg" alt="lmutt090 Banner" class="banner">
+                    <div class="dev-info-container">
+                        <img src="coustompictures/b14e12ae1e13cf693afbedc11de9b5fb.jpg" alt="lmutt090" class="dev-avatarlmutt">
+                        <div class="dev-info">
+                            <span>lmutt090 <span class="description">(Database Manager and Webpage Developer)</span></span>
+                            <a class="discord-link" href="https://discordapp.com/users/1286383453016686705" target="_blank">1286383453016686705</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Snow -->
+            <div class="credits-item">
+                <div class="dev-container">
+                    <img src="https://cdn.discordapp.com/banners/811016330517676073/25b420d87b5961e526ef01c0039566c9?size=4096" alt="Snow Banner" class="banner">
+                    <div class="dev-info-container">
+                        <img src="coustompictures/images_9.jpg" alt="Snow" class="dev-avatar">
+                        <div class="dev-info">
+                            <span>Snow <span class="description">(The knowledgeable one)</span></span>
+                            <a class="discord-link" href="https://discordapp.com/users/811016330517676073" target="_blank">811016330517676073</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floof -->
+             <div class="credits-item">
+                <div class="dev-container">
+                    <img src="https://cdn.discordapp.com/banners/1112530253924012033/a_7895a90913330f372b37d38939067fd4?size=4096" alt="Floof Banner" class="banner">
+                    <div class="dev-info-container">
+                        <img src="https://cdn.discordapp.com/avatars/1112530253924012033/93e927c4476371915107238a99bd29bc?size=1024" alt="Floof" class="dev-avatar">
+                        <div class="dev-info">
+                            <span>Floof <span class="description">(The one who wanted to recode the bot)</span></span>
+                            <a class="discord-link" href="https://discordapp.com/users1112530253924012033" target="_blank">1112530253924012033</a>
+                        </div>
+                    </div>
+                </div>
+             </div>
+    
+            <h2>"Retired"</h2>
+    
+            <!-- Desmecito -->
+            <div class="credits-item">
+                <div class="dev-container">
+                    <img src="" alt="Desmecito Banner" class="banner">
+                    <div class="dev-info-container">
+                        <img src="https://cdn.discordapp.com/avatars/1123769629165244497/108faa59eb05920a81974f93d6c9ad64?size=1024" alt="Desmecito" class="dev-avatar">
+                        <div class="dev-info">
+                            <span>Desmecito <span class="description">(The funny man who likes to help)</span></span>
+                            <a class="discord-link" href="https://discordapp.com/users/1123769629165244497" target="_blank">1123769629165244497</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- theunknownman -->
+            <div class="credits-item">
+                <div class="dev-container">
+                    <img src="" alt="theunknownman Banner" class="banner">
+                    <div class="dev-info-container">
+                        <img src="coustompictures/menu_jevil.png" alt="theunknownman" class="dev-avatar">
+                        <div class="dev-info">
+                            <span>theunknownman. <span class="description">(What is he doing again? I "forgor")</span></span>
+                            <a class="discord-link" href="https://discordapp.com/users/1274922263011004500" target="_blank">1274922263011004500</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- theunknownman -->
-        <div class="credits-item">
-            <div class="dev-container">
-                <img src="coustompictures/menu_jevil.png" 
-                     alt="theunknownman" class="dev-avatar">
-                <div class="dev-info">
-                    <span>theunknownman. <span class="description">(What is he doing again? I "forgor")</span></span>
-                    <a class="discord-link" href="https://discordapp.com/users/1274922263011004500" target="_blank">1274922263011004500</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
