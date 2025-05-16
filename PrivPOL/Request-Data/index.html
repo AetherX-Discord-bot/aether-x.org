@@ -13,7 +13,7 @@
   <h2>User Data Fetcher</h2>
   <label for="userId">User ID:</label><br />
   <input type="text" id="userId" placeholder="Enter user ID" /><br />
-  <label><input type="checkbox" id="legalReason" /> Legal request</label><br />
+  <label><input type="checkbox" id="legalReason" /> Do you want all data?</label><br />
   <button onclick="getUserData()">Fetch Data</button>
 
   <div id="result"></div>
@@ -40,11 +40,46 @@
     socket.addEventListener('message', (event) => {
       const data = JSON.parse(event.data);
       const resultDiv = document.getElementById('result');
-
+      
       if (data.type === 'user-data') {
-        resultDiv.textContent = 'User Data:\n' + JSON.stringify(data.user, null, 2);
+          let output = '';
+          
+          // Display main user data
+          if (data.user) {
+              output += '=== MAIN USER DATA ===\n';
+              output += JSON.stringify(data.user, null, 2) + '\n\n';
+          } else {
+              output += 'No main user data found in users.db\n\n';
+          }
+          
+          // Display server entries if they exist
+          if (data.server_entries && data.server_entries.length > 0) {
+              output += '=== SERVER ENTRIES ===\n';
+              data.server_entries.forEach((entry, index) => {
+                  output += `Entry ${index + 1} (from ${entry.source}):\n`;
+                  output += JSON.stringify(entry, (key, value) => {
+                      return key === 'source' ? undefined : value; // Hide source in the entry display
+                  }, 2) + '\n\n';
+              });
+          } else if (data.sources?.servers_db) {
+              output += 'No additional entries found in servers.db\n';
+          }
+          
+          // Display sources information
+          if (data.sources) {
+              output += '\n=== DATA SOURCES ===\n';
+              if (data.sources.main_db) {
+                  output += `• Main DB: ${data.sources.main_db}\n`;
+              }
+              if (data.sources.servers_db) {
+                  output += `• Server DBs: ${data.sources.servers_db.join(', ')}\n`;
+              }
+          }
+          
+          resultDiv.textContent = output;
+          
       } else if (data.type === 'error') {
-        resultDiv.textContent = 'Error: ' + data.message;
+          resultDiv.textContent = 'Error: ' + data.message;
       }
     });
 
