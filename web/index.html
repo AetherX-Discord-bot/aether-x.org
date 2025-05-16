@@ -392,11 +392,38 @@
             <div class="bot-details">
                 <h2 class="animate__animated animate__fadeInRight">About AetherX</h2>
                 <p class="animate__animated animate__fadeInRight animate__delay-1s">AetherX is an "all in one" Discord bot. It offers many minigames, features, moderation, etc...</p>
-                
+
                 <div class="server-count animate__animated animate__fadeIn animate__delay-1s">
-                    <i class="fas fa-server"></i> Proudly serving <strong>23<!--Keep -1 from count. One is development server containing one user--></strong> servers!
+                    <i class="fas fa-server"></i> Proudly serving <strong id="serverCount">...</strong> servers!
                 </div>
+            
+                <script>
+                  // Replace this with your actual WebSocket URL exposed by localtunnel or localhost for testing
+                  const ws = new WebSocket('wss://aetherxdash212.loca.lt'); // or 'ws://localhost:8080'
                 
+                  ws.addEventListener('open', () => {
+                    // Ask for the bot guild count once connected
+                    ws.send(JSON.stringify({ type: 'get-bot-guild-count' }));
+                  });
+              
+                  ws.addEventListener('message', (event) => {
+                    const data = JSON.parse(event.data);
+                    if (data.type === 'bot-guild-count' && typeof data.count === 'number') {
+                      // Subtract 1 from the count (development server exclusion)
+                      const displayCount = data.count - 1;
+                      document.getElementById('serverCount').textContent = displayCount;
+                    }
+                  });
+              
+                  ws.addEventListener('error', (error) => {
+                    console.error('WebSocket error:', error);
+                  });
+              
+                  ws.addEventListener('close', () => {
+                    console.warn('WebSocket connection closed');
+                  });
+                </script>
+                  
                 <div class="animate__animated animate__fadeInUp animate__delay-2s">
                     <a href="https://discord.com/oauth2/authorize?client_id=1067646246254284840&permissions=582056601447606&integration_type=0&scope=bot" class="btn">
                         <i class="fas fa-robot"></i> Invite to Server
