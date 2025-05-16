@@ -129,12 +129,21 @@
             color: #ff0000;
         }
 
+        .update {
+            color: #0000ff;
+        }
+
         .new {
             color: #008000;
         }
 
         .warn {
             color: #ffa500;
+        }
+
+        .warn-important {
+            color: #ff0000;
+            font-size: larger;
         }
 
         .new-suggest {
@@ -185,14 +194,22 @@
 
         <!-- Latest Update (Spotlight) -->
         <div class="latest-update animate__animated animate__zoomIn">
-            <div class="update-date">March 27, 2025</div>
+            <div class="update-date">May 16, 2025</div>
             <h2 class="update-title">Version 0.4.9 release</h2>
-            <li class="fix">Slots works again.</li>
+            <li class="warn-important">Updated Privacy Policy</li>
+            <li class="new">Added data requests.</li>
+            <li class="update">Made server count dynamic.</li>
         </div>
 
         <!-- Older Updates -->
         <div class="updates-list">
             <h2 class="animate__animated animate__fadeIn">Previous Updates</h2>
+
+            <div class="update-card animate__animated animate__fadeInUp">
+                <div class="update-date">March 27, 2025</div>
+                <h2 class="update-title">Version 0.4.9 release</h2>
+                <li class="fix">Slots works again.</li>
+            </div>
 
             <div class="update-card animate__animated animate__fadeInUp">
                 <div class="update-date">March 27, 2025</div>

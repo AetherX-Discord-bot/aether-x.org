@@ -398,29 +398,36 @@
                 </div>
             
                 <script>
-                  // Replace this with your actual WebSocket URL exposed by localtunnel or localhost for testing
-                  const ws = new WebSocket('wss://aetherxdash212.loca.lt'); // or 'ws://localhost:8080'
+                document.addEventListener('DOMContentLoaded', () => {
+                    // Replace this with your actual WebSocket URL exposed by localtunnel or localhost for testing
+                    const ws = new WebSocket('wss://aetherxdash212.loca.lt'); // or 'ws://localhost:8080'
                 
-                  ws.addEventListener('open', () => {
-                    // Ask for the bot guild count once connected
-                    ws.send(JSON.stringify({ type: 'get-bot-guild-count' }));
-                  });
-              
-                  ws.addEventListener('message', (event) => {
-                    const data = JSON.parse(event.data);
-                    if (data.type === 'bot-guild-count' && typeof data.count === 'number') {
-                      // Subtract 1 from the count (development server exclusion)
-                      const displayCount = data.count - 1;
-                      document.getElementById('serverCount').textContent = displayCount;
-                    }
-                  });
-              
-                  ws.addEventListener('error', (error) => {
-                    console.error('WebSocket error:', error);
-                  });
-              
-                  ws.addEventListener('close', () => {
-                    console.warn('WebSocket connection closed');
+                    ws.addEventListener('open', () => {
+                      // Ask for the bot guild count once connected
+                      window.alert('WebSocket connection established. Requesting bot guild count...');
+                      ws.send(JSON.stringify({ type: 'get-bot-guild-count' }));
+                    });
+                
+                    ws.addEventListener('message', (event) => {
+                      const data = JSON.parse(event.data);
+                      if (data.type === 'bot-guild-count' && typeof data.count === 'number') {
+                        // Subtract 1 from the count (development server exclusion)
+                        window.alert('Received bot guild count: ' + data.count);
+                        const displayCount = data.count - 1;
+                        document.getElementById('serverCount').textContent = displayCount;
+                        window.alert('Updated server count displayed: ' + displayCount);
+                      }
+                    });
+                
+                    ws.addEventListener('error', (error) => {
+                      console.error('WebSocket error:', error);
+                      window.alert('WebSocket error: ' + error.message);
+                    });
+                
+                    ws.addEventListener('close', () => {
+                      console.warn('WebSocket connection closed');
+                      window.alert('WebSocket connection closed');
+                    });
                   });
                 </script>
                   

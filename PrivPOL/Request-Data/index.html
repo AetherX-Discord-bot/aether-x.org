@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch User Data</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { padding: 8px; margin-top: 10px; }
+    #result { margin-top: 20px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h2>User Data Fetcher</h2>
+  <label for="userId">User ID:</label><br>
+  <input type="text" id="userId" placeholder="Enter user ID"><br>
+  <label><input type="checkbox" id="legalReason"> Legal request</label><br>
+  <button onclick="getUserData()">Fetch Data</button>
+
+  <div id="result"></div>
+
+  <script>
+    const socket = new WebSocket('wss://aetherxdash212.loca.lt'); // Replace with your tunnel URL if different
+
+    socket.addEventListener('open', () => {
+      console.log('Connected to WebSocket server');
+    });
+
+    socket.addEventListener('message', (event) => {
+      const data = JSON.parse(event.data);
+      const resultDiv = document.getElementById('result');
+
+      if (data.type === 'user-data') {
+        resultDiv.textContent = 'User Data:\n' + JSON.stringify(data.user, null, 2);
+      } else if (data.type === 'error') {
+        resultDiv.textContent = 'Error: ' + data.message;
+      }
+    });
+
+    function getUserData() {
+      const userId = document.getElementById('userId').value.trim();
+      const legal = document.getElementById('legalReason').checked;
+
+      if (!userId) {
+        alert('Please enter a user ID.');
+        return;
+      }
+
+      const payload = {
+        type: 'get-user',
+        user_id: userId,
+        request_data_because_of_legal_reasons: legal
+      };
+
+      socket.send(JSON.stringify(payload));
+    }
+  </script>
+</body>
+</html>
