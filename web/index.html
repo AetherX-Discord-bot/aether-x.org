@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AetherX | Discord Bot</title>
+    <link rel="icon" href="AetherX.png" type="image/png">
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -399,32 +400,36 @@
             
                 <script>
                 document.addEventListener('DOMContentLoaded', () => {
-                    // Replace this with your actual WebSocket URL exposed by localtunnel or localhost for testing
-                    const ws = new WebSocket('wss://aetherxdash212.loca.lt'); // or 'ws://localhost:8080'
-                
-                    ws.addEventListener('open', () => {
-                      // Ask for the bot guild count once connected
-                      ws.send(JSON.stringify({ type: 'get-bot-guild-count' }));
-                    });
-                
-                    ws.addEventListener('message', (event) => {
-                      const data = JSON.parse(event.data);
-                      if (data.type === 'bot-guild-count' && typeof data.count === 'number') {
-                        // Subtract 1 from the count (development server exclusion)
-                        const displayCount = data.count - 1;
-                        document.getElementById('serverCount').textContent = displayCount;
-                      }
-                    });
-                
-                    ws.addEventListener('error', (error) => {
-                      console.error('WebSocket error:', error);
-                      window.alert('WebSocket error: ' + error.message);
-                    });
-                
-                    ws.addEventListener('close', () => {
-                      console.warn('WebSocket connection closed');
-                    });
-                  });
+                    const serverCountElement = document.getElementById('serverCount');
+                    
+                    try {
+                        const ws = new WebSocket('wss://aetherxdash212.loca.lt');
+                        
+                        ws.addEventListener('open', () => {
+                            ws.send(JSON.stringify({ type: 'get-bot-guild-count' }));
+                        });
+                        
+                        ws.addEventListener('message', (event) => {
+                            const data = JSON.parse(event.data);
+                            if (data.type === 'bot-guild-count' && typeof data.count === 'number') {
+                                const displayCount = data.count - 1;
+                                serverCountElement.textContent = displayCount;
+                            }
+                        });
+                        
+                        ws.addEventListener('error', (error) => {
+                            console.error('WebSocket error:', error);
+                            serverCountElement.textContent = '24'; // Fallback value
+                        });
+                        
+                        ws.addEventListener('close', () => {
+                            console.warn('WebSocket connection closed');
+                        });
+                    } catch (error) {
+                        console.error('WebSocket initialization error:', error);
+                        serverCountElement.textContent = '24'; // Fallback value
+                    }
+                });
                 </script>
                   
                 <div class="animate__animated animate__fadeInUp animate__delay-2s">
@@ -432,11 +437,10 @@
                         <i class="fas fa-robot"></i> Invite to Server
                     </a>
                     <a href="https://discord.gg/yFY8Fnbtp9" class="btn">
-                       <i class="fas fa-users"></i> Support Server
-                     </a>
+                        <i class="fas fa-users"></i> Support Server
+                    </a>
                     <a href="updates" class="btn animate__animated animate__pulse animate__infinite">
                         <i class="fas fa-bullhorn"></i> Updates
-                    </a>
                     </a>
                 </div>
             </div>
@@ -495,9 +499,8 @@
                     <li>Data is stored securely and encrypted</li>
                     <li>You can request data deletion by contacting us</li>
                     <p>View the full Privacy Policy on our <a href="../PrivPOL/"> Privacy Policy page</a></p>
-                </ol>
-                    <p>Last updated: March 24, 2025</p>
                 </ul>
+                <p>Last updated: March 24, 2025</p>
             </div>
             
             <div id="credits" class="legal-content">
