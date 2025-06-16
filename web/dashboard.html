@@ -108,6 +108,7 @@
         if (window.location.hash.startsWith('#access_token=')) {
           const params = new URLSearchParams(window.location.hash.substring(1));
           token = params.get('access_token');
+          alert('Access token extracted: ' + token);
           setCookie('aetherx_token', token, 7);
           window.location.hash = '';
           fetchDiscordUser();
@@ -116,6 +117,7 @@
         } else {
           // Try cookie
           token = getCookie('aetherx_token');
+          alert('Token from cookie: ' + token);
           if (token) {
             fetchDiscordUser();
             fetchDiscordGuilds();
@@ -129,33 +131,37 @@
       }
 
       function fetchDiscordUser() {
-        if (!token) return;
+        if (!token) { alert('No token for user fetch!'); return; }
         fetch('https://discord.com/api/users/@me', {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then(r => r.json())
           .then(u => {
+            alert('User info fetched: ' + JSON.stringify(u));
             user = u;
             document.getElementById('userInfo').innerHTML =
               `<img src='https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png' width='40' style='vertical-align:middle;border-radius:50%;margin-right:8px;'>` +
               `<b>${u.username}#${u.discriminator}</b> (ID: ${u.id})`;
           })
           .catch(() => {
+            alert('Failed to fetch user info!');
             document.getElementById('userInfo').innerHTML = '<span class="error">Failed to fetch user info.</span>';
           });
       }
 
       function fetchDiscordGuilds() {
-        if (!token) return;
+        if (!token) { alert('No token for guilds fetch!'); return; }
         fetch('https://discord.com/api/users/@me/guilds', {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then(r => r.json())
           .then(gs => {
+            alert('Guilds fetched: ' + JSON.stringify(gs));
             guilds = gs;
             renderGuilds();
           })
           .catch(() => {
+            alert('Failed to fetch guilds!');
             document.getElementById('guildsList').innerHTML = '<span class="error">Failed to fetch guilds.</span>';
           });
       }
