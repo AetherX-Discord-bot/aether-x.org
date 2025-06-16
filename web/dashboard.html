@@ -306,6 +306,13 @@
           tbody.appendChild(tr);
         }
       }
+      window.addEventListener('DOMContentLoaded', function() {
+        if (window.location.protocol === 'file:') {
+          document.body.insertAdjacentHTML('afterbegin', '<div style="background:#ff6b6b;color:#fff;padding:1em;text-align:center;font-weight:bold;">Warning: Cookies and authentication will not work when running this page as a file:// URL. Please use a local server (http://localhost:PORT/).</div>');
+        } else if (!navigator.cookieEnabled) {
+          document.body.insertAdjacentHTML('afterbegin', '<div style="background:#ff6b6b;color:#fff;padding:1em;text-align:center;font-weight:bold;">Warning: Cookies are disabled in your browser. Login will not work.</div>');
+        }
+      });
     </script>
   </body>
 </html>
