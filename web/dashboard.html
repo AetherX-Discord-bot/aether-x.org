@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AetherX Bot Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #181a20; color: #fff; margin: 0; padding: 0; }
+    .navbar { background: #23272f; padding: 0.5em 0; display: flex; justify-content: center; gap: 2em; box-shadow: 0 2px 8px #0004; }
+    .navitem { color: #7ecfff; cursor: pointer; font-weight: bold; padding: 0.5em 1em; border-radius: 6px; transition: background 0.2s; }
+    .navitem.active, .navitem:hover { background: #2c2f36; color: #fff; }
+    .container { max-width: 900px; margin: 40px auto; background: #23272f; border-radius: 10px; padding: 32px; box-shadow: 0 2px 16px #0008; }
+    h1, h2 { color: #7ecfff; }
+    label { display: block; margin-top: 1em; }
+    input, select, textarea { width: 100%; padding: 8px; margin-top: 4px; border-radius: 4px; border: none; background: #2c2f36; color: #fff; }
+    button { margin-top: 1em; padding: 10px 20px; background: #7ecfff; color: #181a20; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    button:hover { background: #5bb3e6; }
+    .error { color: #ff6b6b; }
+    .success { color: #7fff7e; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+    th, td { padding: 8px; border-bottom: 1px solid #333; }
+    th { background: #222; }
+    tr:nth-child(even) { background: #23272f; }
+    tr:nth-child(odd) { background: #20232a; }
+    .page { display: none; }
+    .page.active { display: block; }
+    #guildsList > div { background: #20232a; border-radius: 8px; padding: 12px 8px; transition: box-shadow 0.2s, border 0.2s; border: 2px solid transparent; }
+    #guildsList > div.selected, #guildsList > div:hover { border: 2px solid #7ecfff; box-shadow: 0 0 8px #7ecfff44; }
+  </style>
+</head>
+<body>
+    <div class="navbar">
+      <span class="navitem" id="navHome" onclick="showPage('home')">Home</span>
+      <span class="navitem" id="navGuilds" onclick="showPage('guilds')">Guilds</span>
+      <span class="navitem" id="navSettings" onclick="showPage('settings')">Guild Settings</span>
+      <span class="navitem" id="navMembers" onclick="showPage('members')">Guild Members</span>
+    </div>
+    <div class="container">
+      <div id="page-home" class="page">
+        <h1>AetherX Bot Dashboard</h1>
+        <div id="status"></div>
+        <div id="userInfo"></div>
+      </div>
+      <div id="page-guilds" class="page" style="display:none;">
+        <h2>Your Servers</h2>
+        <div id="guildsList" style="display:flex;flex-wrap:wrap;gap:16px;"></div>
+      </div>
+      <div id="page-settings" class="page" style="display:none;">
+        <h2>Guild Settings</h2>
+        <div id="guildStatus"></div>
+        <pre id="guildSettings" style="background:#181a20;padding:1em;border-radius:6px;overflow:auto;"></pre>
+        <label>Update Settings (JSON)
+          <textarea id="newSettings" rows="5" placeholder="{\n  \"prefix\": \"!\"\n}"></textarea>
+        </label>
+        <button onclick="updateGuildSettings()">Update Settings</button>
+        <div id="updateStatus"></div>
+      </div>
+      <div id="page-members" class="page" style="display:none;">
+        <h2>Guild Members</h2>
+        <button onclick="fetchGuildMembers()">Refresh Members</button>
+        <table id="membersTable">
+          <thead><tr><th>User ID</th><th>Username</th><th>Actions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      // --- CONFIG ---
+      const WS_URL = 'wss://aetherxdash212.loca.lt';
+      const DISCORD_CLIENT_ID = '1067646246254284840'; // TODO: Replace with your Discord app client ID
+      const REDIRECT_URI = window.location.origin + window.location.pathname;
+      const OAUTH_SCOPE = 'identify guilds';
+      let ws;
+      let token = '';
+      let guildId = '';
+      let user = null;
+      let guilds = [];
+
+      function setCookie(name, value, days) {
+        let expires = '';
+        if (days) {
+          const date = new Date();
+          date.setTime(date.getTime() + (days*24*60*60*1000));
+          expires = '; expires=' + date.toUTCString();
+        }
+        document.cookie = name + '=' + (value || '')  + expires + '; path=/';
+      }
+      function getCookie(name) {
+        const nameEQ = name + '=';
+        const ca = document.cookie.split(';');
+        for(let i=0;i < ca.length;i++) {
+          let c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+      }
+      function eraseCookie(name) {   
+        document.cookie = name+'=; Max-Age=-99999999;';  
+      }
+
+      function discordLogin() {
+        const url = `https://discord.com/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=${encodeURIComponent(OAUTH_SCOPE)}`;
+        window.location.href = url;
+      }
+
+      function checkOAuthFragment() {
+        if (window.location.hash.startsWith('#access_token=')) {
+          const params = new URLSearchParams(window.location.hash.substring(1));
+          token = params.get('access_token');
+          setCookie('aetherx_token', token, 7);
+          window.location.hash = '';
+          document.getElementById('tokenStatus').innerHTML = 'Logged in with Discord.';
+          document.getElementById('discordLoginBtn').style.display = 'none';
+          fetchDiscordUser();
+          fetchDiscordGuilds();
+        } else {
+          // Try cookie
+          token = getCookie('aetherx_token');
+          if (token) {
+            document.getElementById('tokenStatus').innerHTML = 'Logged in with Discord.';
+            document.getElementById('discordLoginBtn').style.display = 'none';
+            fetchDiscordUser();
+            fetchDiscordGuilds();
+          } else {
+            // Not logged in, redirect
+            discordLogin();
+          }
+        }
+      }
+
+      function fetchDiscordUser() {
+        if (!token) return;
+        fetch('https://discord.com/api/users/@me', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+          .then(r => r.json())
+          .then(u => {
+            user = u;
+            document.getElementById('userInfo').innerHTML =
+              `<img src='https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png' width='40' style='vertical-align:middle;border-radius:50%;margin-right:8px;'>` +
+              `<b>${u.username}#${u.discriminator}</b> (ID: ${u.id})`;
+          })
+          .catch(() => {
+            document.getElementById('userInfo').innerHTML = '<span class="error">Failed to fetch user info.</span>';
+          });
+      }
+
+      function fetchDiscordGuilds() {
+        if (!token) return;
+        fetch('https://discord.com/api/users/@me/guilds', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+          .then(r => r.json())
+          .then(gs => {
+            guilds = gs;
+            renderGuilds();
+          })
+          .catch(() => {
+            document.getElementById('guildsList').innerHTML = '<span class="error">Failed to fetch guilds.</span>';
+          });
+      }
+
+      function showPage(page) {
+        for (const p of ['home','guilds','settings','members']) {
+          document.getElementById('page-' + p).style.display = 'none';
+          document.getElementById('nav' + p.charAt(0).toUpperCase() + p.slice(1)).classList.remove('active');
+        }
+        document.getElementById('page-' + page).style.display = 'block';
+        document.getElementById('nav' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
+      }
+      // Show home by default
+      showPage('home');
+
+      function renderGuilds() {
+        const section = document.getElementById('page-guilds');
+        const list = document.getElementById('guildsList');
+        section.style.display = '';
+        list.innerHTML = '';
+        if (!guilds || !Array.isArray(guilds) || guilds.length === 0) {
+          list.innerHTML = '<span class="error">No servers found.</span>';
+          return;
+        }
+        for (const g of guilds) {
+          const iconUrl = g.icon ? `https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png';
+          const div = document.createElement('div');
+          div.style = 'cursor:pointer;text-align:center;width:110px;';
+          div.innerHTML = `<img src='${iconUrl}' width='64' height='64' style='border-radius:50%;border:2px solid #7ecfff;'><br><span style='color:#fff;'>${g.name}</span>`;
+          div.onclick = () => { selectGuild(g.id, g.name); showPage('settings'); };
+          if (guildId === g.id) div.classList.add('selected');
+          list.appendChild(div);
+        }
+      }
+
+      function selectGuild(id, name) {
+        guildId = id;
+        document.getElementById('guildId').value = id;
+        document.getElementById('guildStatus').innerHTML = `<span class='success'>Selected: ${name}</span>`;
+      }
+
+      function connectWS() {
+        ws = new WebSocket(WS_URL);
+        ws.onopen = () => setStatus('Connected to dashboard server.', false);
+        ws.onclose = () => setStatus('WebSocket disconnected. Refresh to reconnect.', true);
+        ws.onerror = (e) => setStatus('WebSocket error.', true);
+        ws.onmessage = handleWSMessage;
+      }
+      connectWS();
+      checkOAuthFragment();
+
+      function setStatus(msg, isError) {
+        document.getElementById('status').innerHTML = `<span class="${isError ? 'error' : 'success'}">${msg}</span>`;
+      }
+      function setToken() {
+        token = document.getElementById('token').value.trim();
+        document.getElementById('tokenStatus').innerHTML = token ? 'Token set.' : '<span class="error">No token set.</span>';
+      }
+      function getGuildId() {
+        guildId = document.getElementById('guildId').value.trim();
+        return guildId;
+      }
+      function getBotGuildCount() {
+        ws.send(JSON.stringify({ type: 'get-bot-guild-count' }));
+      }
+      function fetchGuildSettings() {
+        if (!token || !getGuildId()) {
+          document.getElementById('guildStatus').innerHTML = '<span class="error">Token and Guild ID required.</span>';
+          return;
+        }
+        ws.send(JSON.stringify({ type: 'get-guild-settings', token, guildId }));
+      }
+      function updateGuildSettings() {
+        if (!token || !getGuildId()) {
+          document.getElementById('updateStatus').innerHTML = '<span class="error">Token and Guild ID required.</span>';
+          return;
+        }
+        let newSettings;
+        try {
+          newSettings = JSON.parse(document.getElementById('newSettings').value);
+        } catch (e) {
+          document.getElementById('updateStatus').innerHTML = '<span class="error">Invalid JSON.</span>';
+          return;
+        }
+        ws.send(JSON.stringify({ type: 'update-guild-settings', token, guildId, newSettings }));
+      }
+      function fetchGuildMembers() {
+        if (!token || !getGuildId()) {
+          document.getElementById('guildStatus').innerHTML = '<span class="error">Token and Guild ID required.</span>';
+          return;
+        }
+        ws.send(JSON.stringify({ type: 'get-guild-members', token, guildId }));
+      }
+      function kickMember(userId) {
+        if (!token || !getGuildId()) return;
+        if (!confirm('Kick this member?')) return;
+        ws.send(JSON.stringify({ type: 'kick-member', token, guildId, userId }));
+      }
+      function banMember(userId) {
+        if (!token || !getGuildId()) return;
+        if (!confirm('Ban this member?')) return;
+        ws.send(JSON.stringify({ type: 'ban-member', token, guildId, userId }));
+      }
+      function handleWSMessage(event) {
+        let data;
+        try { data = JSON.parse(event.data); } catch { return; }
+        if (data.type === 'bot-guild-count') {
+          document.getElementById('botInfo').innerText = `Bot is in ${data.count} guild(s).`;
+        } else if (data.type === 'guild-settings') {
+          document.getElementById('guildSettings').innerText = JSON.stringify(data, null, 2);
+          document.getElementById('guildStatus').innerText = 'Guild settings loaded.';
+        } else if (data.type === 'guild-settings-updated') {
+          document.getElementById('updateStatus').innerHTML = '<span class="success">Settings updated.</span>';
+          document.getElementById('guildSettings').innerText = JSON.stringify(data.settings, null, 2);
+        } else if (data.type === 'guild-members') {
+          renderMembersTable(data.members);
+          document.getElementById('guildStatus').innerText = 'Guild members loaded.';
+        } else if (data.type === 'success') {
+          setStatus(data.message, false);
+        } else if (data.type === 'error') {
+          setStatus(data.message, true);
+        }
+      }
+      function renderMembersTable(members) {
+        const tbody = document.querySelector('#membersTable tbody');
+        tbody.innerHTML = '';
+        if (!members || !Array.isArray(members)) {
+          tbody.innerHTML = '<tr><td colspan="3">No members found or error.</td></tr>';
+          return;
+        }
+        for (const m of members) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${m.id}</td><td>${m.username || ''}</td><td>
+            <button onclick="kickMember('${m.id}')">Kick</button>
+            <button onclick="banMember('${m.id}')">Ban</button>
+          </td>`;
+          tbody.appendChild(tr);
+        }
+      }
+    </script>
+  </body>
+</html>
