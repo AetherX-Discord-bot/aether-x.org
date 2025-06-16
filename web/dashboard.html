@@ -110,21 +110,20 @@
           token = params.get('access_token');
           setCookie('aetherx_token', token, 7);
           window.location.hash = '';
-          document.getElementById('tokenStatus').innerHTML = 'Logged in with Discord.';
-          document.getElementById('discordLoginBtn').style.display = 'none';
           fetchDiscordUser();
           fetchDiscordGuilds();
+          showPage('home');
         } else {
           // Try cookie
           token = getCookie('aetherx_token');
           if (token) {
-            document.getElementById('tokenStatus').innerHTML = 'Logged in with Discord.';
-            document.getElementById('discordLoginBtn').style.display = 'none';
             fetchDiscordUser();
             fetchDiscordGuilds();
+            showPage('home');
           } else {
-            // Not logged in, redirect
-            discordLogin();
+            // Not logged in, show login button
+            document.getElementById('userInfo').innerHTML = '<button id="discordLoginBtn" onclick="discordLogin()">Login with Discord</button>';
+            showPage('home');
           }
         }
       }
