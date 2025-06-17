@@ -180,7 +180,7 @@ h2::after {
     gap: 20px;
 }
 
-.dev-avatar {
+.dev-avatar, .dev-avatarlmutt {
     width: 80px;
     height: 80px;
     border-radius: 50%;
