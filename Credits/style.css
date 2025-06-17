@@ -154,12 +154,14 @@ h2::after {
     background: linear-gradient(135deg, var(--accent-discord) 0%, #8a3ffc 100%);
     color: var(--text-normal);
     border: 1px linear-gradient(135deg, var(--accent-discord) 0%, #8a3ffc 100%);
+    border-radius: var(--border-radius);
 }
 
 .owner-container {
     background: linear-gradient(135deg, var(--accent-cyan) 0%, #0077cc 100%);
     color: var(--text-normal);
     border: 1px linear-gradient(135deg, var(--accent-cyan) 0%, #0077cc 100%);;
+    border-radius: var(--border-radius);
 }
 
 /* Banner with better visibility */
