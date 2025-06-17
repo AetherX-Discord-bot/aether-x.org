@@ -180,22 +180,32 @@ h2::after {
     gap: 20px;
 }
 
-.dev-avatar, .dev-avatarlmutt {
-    width: 80px;
-    height: 80px;
+.dev-avatar, 
+.dev-avatarlmutt {
+    --avatar-size: 80px; /* Using CSS variable for easy scaling */
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    min-width: var(--avatar-size); /* Prevents collapse in some edge cases */
+    min-height: var(--avatar-size);
     border-radius: 50%;
     object-fit: cover;
-    transition: transform var(--transition-speed) ease;
+    object-position: center; /* Ensures faces stay centered */
+    transition: transform 0.3s ease;
     flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    aspect-ratio: 1/1; /* Fallback for modern browsers */
+    display: block; /* Removes inline-image whitespace */
+    border: 3px solid transparent; /* Prepare for colored borders */
+    box-sizing: border-box; /* Includes border in dimensions */
 }
 
+/* Specific avatar styles */
 .dev-avatar {
-    border: 3px solid var(--accent-cyan);
+    border-color: var(--accent-cyan); /* Example color */
 }
 
 .dev-avatarlmutt {
-    border: 3px solid var(--accent-magenta);
+    border-color: var(--accent-magenta); /* Example color */
 }
 
 .dev-info span {
