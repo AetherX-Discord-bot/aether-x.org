@@ -1,0 +1,261 @@
+:root {
+    /* Updated color palette with better contrast */
+    --background-primary: #2f3136;
+    --background-secondary: #36393f;
+    --background-tertiary: #40444b;
+    --background-hover: #484c54;
+    --text-normal: #ffffff;  /* Changed from #dcddde to white for better contrast */
+    --text-muted: #b9bbbe;
+    --accent-discord: #5865f2;
+    --accent-discord-dark: #4752c4;
+    --accent-discord-darker: #414aa3;
+    --accent-cyan: #00b0f4;  /* Brightened cyan */
+    --accent-magenta: #ff2bd4;  /* Brightened magenta */
+    --accent-red: #ff3a3a;  /* Brightened red */
+    --accent-green: #43e660;  /* Brightened green */
+    --shadow-primary: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --border-radius: 10px;
+    --transition-speed: 0.25s;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    cursor: default;
+    min-height: 100vh;
+}
+
+.credits-container {
+    max-width: 850px;
+    margin: 0 auto;
+    background-color: var(--background-secondary);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-primary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Typography with better contrast */
+h1, h2 {
+    color: var(--text-normal);
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.4rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 1.7rem;
+    margin-top: 40px;
+    font-weight: 600;
+}
+
+h1::after, h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--accent-discord);
+    border-radius: 3px;
+}
+
+h2::after {
+    background: var(--accent-cyan);
+    width: 60px;
+}
+
+/* Enhanced contact links */
+.contact-link {
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+#contactandrogalaxi {
+    color: var(--accent-red);
+    background-color: rgba(255, 58, 58, 0.1);
+}
+
+#contactandrogalaxi:hover {
+    color: #fff;
+    background-color: var(--accent-red);
+    text-decoration: none;
+}
+
+#contactandrogalaxi:visited {
+    color: #ff6b6b;
+}
+
+#contactlmutt {
+    color: var(--accent-magenta);
+    background-color: rgba(255, 43, 212, 0.1);
+}
+
+#contactlmutt:hover {
+    color: #fff;
+    background-color: var(--accent-magenta);
+    text-decoration: none;
+}
+
+#contactlmutt:visited {
+    color: #e673d1;
+}
+
+#contact {
+    color: var(--accent-discord);
+    background-color: rgba(88, 101, 242, 0.1);
+}
+
+#contact:hover {
+    color: #fff;
+    background-color: var(--accent-discord);
+    text-decoration: none;
+}
+
+#contact:visited {
+    color: var(--accent-discord-darker);
+}
+
+/* Cards with better visibility */
+.credits-item {
+    background-color: var(--background-tertiary);
+    padding: 22px;
+    border-radius: var(--border-radius);
+    margin-bottom: 22px;
+    transition: all var(--transition-speed) ease;
+    border-left: 4px solid transparent;
+}
+
+.credits-item:hover {
+    background-color: var(--background-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-left-color: var(--accent-discord);
+}
+
+/* Special containers with improved contrast */
+.super-dev-container {
+    background: linear-gradient(135deg, var(--accent-discord) 0%, #8a3ffc 100%);
+    color: var(--text-normal);
+    border: none;
+}
+
+.owner-container {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, #0077cc 100%);
+    color: var(--text-normal);
+    border: none;
+}
+
+/* Banner with better visibility */
+.banner {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Developer info with better contrast */
+.dev-info-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dev-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform var(--transition-speed) ease;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dev-avatar {
+    border: 3px solid var(--accent-cyan);
+}
+
+.dev-avatarlmutt {
+    border: 3px solid var(--accent-magenta);
+}
+
+.dev-info span {
+    font-weight: 700;
+    color: var(--text-normal);
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.description {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.discord-link {
+    color: var(--accent-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.discord-link:hover {
+    color: #fff;
+    background-color: var(--accent-green);
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .dev-avatar, .dev-avatarlmutt {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .credits-container {
+        padding: 20px 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .banner {
+        height: 150px;
+    }
+}
