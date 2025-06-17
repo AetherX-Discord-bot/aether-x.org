@@ -153,11 +153,13 @@ h2::after {
 .super-dev-container {
     background: linear-gradient(135deg, var(--accent-discord) 0%, #8a3ffc 100%);
     color: var(--text-normal);
+    border: 1px linear-gradient(135deg, var(--accent-discord) 0%, #8a3ffc 100%);
 }
 
 .owner-container {
     background: linear-gradient(135deg, var(--accent-cyan) 0%, #0077cc 100%);
     color: var(--text-normal);
+    border: 1px linear-gradient(135deg, var(--accent-cyan) 0%, #0077cc 100%);;
 }
 
 /* Banner with better visibility */
