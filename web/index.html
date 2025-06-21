@@ -24,6 +24,8 @@
             --gray: #666666;
             --success: #57F287;
             --card-bg: #121212;
+            --warning: #FEE75C;
+            --warning-dark: #F1C40F;
         }
         
         * {
@@ -31,6 +33,53 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Rebuild Banner Styles */
+        .rebuild-banner {
+            background: linear-gradient(135deg, #ff8a00, #e52e71);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+        
+        .rebuild-banner-content {
+            flex: 1;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .rebuild-banner-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+        
+        .rebuild-banner-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(254, 231, 92, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(254, 231, 92, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(254, 231, 92, 0); }
         }
         
         body {
@@ -363,10 +412,25 @@
             .footer-links {
                 flex-wrap: wrap;
             }
+            
+            .rebuild-banner-content {
+                font-size: 0.9rem;
+                text-align: left;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Rebuild Banner -->
+    <div class="rebuild-banner" id="rebuildBanner">
+        <div class="rebuild-banner-content">
+            <i class="fas fa-tools"></i> AetherX is currently undergoing a major rebuild and may be offline frequently. Thank you for your patience!
+        </div>
+        <button class="rebuild-banner-close" id="closeBanner">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
     <!-- Navigation Bar -->
     <div class="nav-container animate__animated animate__fadeIn">
         <div class="container">
@@ -452,10 +516,7 @@
                 <div class="feature-card">
                     <h3><i class="fas fa-magic"></i> Minigames</h3>
                     <ul style="font-size: 18px; line-height: 1.6;">
-                    <li>BlackJack ♠️</li>
-                    <li>High-Low 🎲</li>
-                    <li>Slots 🎰</li>
-                    <li>Word Of The Day 📖</li>
+                    <p>N/A</p>
                   </ul>
                 </div>
                 <div class="feature-card">
@@ -487,7 +548,7 @@
                     <li>We reserve the right to ban users/servers</li>
 <p>View full Terms of Service on our <a href="../TOS/">TOS Page</a></p>
                 </ol>
-                <p>Last Updated: March 24, 2025</p>
+                <p>Last Updated: March 27, 2025</p>
             </div>
             
             <div id="privacy" class="legal-content">
@@ -500,7 +561,7 @@
                     <li>You can request data deletion by contacting us</li>
                     <p>View the full Privacy Policy on our <a href="../PrivPOL/"> Privacy Policy page</a></p>
                 </ul>
-                <p>Last updated: March 24, 2025</p>
+                <p>Last updated: May 16, 2025</p>
             </div>
             
             <div id="credits" class="legal-content">
@@ -531,7 +592,23 @@
     </footer>
 
     <script>
-        function openTab(evt, tabName) {
+        // Rebuild Banner Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const rebuildBanner = document.getElementById('rebuildBanner');
+            const closeBanner = document.getElementById('closeBanner');
+            
+            // Check if user previously closed the banner
+            if (!localStorage.getItem('bannerClosed')) {
+                rebuildBanner.style.display = 'flex';
+            }
+            
+            // Close banner handler
+            closeBanner.addEventListener('click', () => {
+                rebuildBanner.style.display = 'none';
+                localStorage.setItem('bannerClosed', 'true');
+            });
+            
+            // Tab functionality
             const tabContents = document.getElementsByClassName("legal-content");
             for (let i = 0; i < tabContents.length; i++) {
                 tabContents[i].classList.remove("active");
@@ -542,11 +619,10 @@
                 tabLinks[i].classList.remove("active");
             }
             
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('tos').classList.add("active");
+            document.querySelector('.legal-tab').classList.add("active");
+            
+            // Intersection Observer for animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -564,6 +640,21 @@
             document.documentElement.style.setProperty('--light', '#E0E0E0');
             document.documentElement.style.setProperty('--dark', '#000000');
         });
+        
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("legal-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            const tabLinks = document.getElementsByClassName("legal-tab");
+            for (let i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
     </script>
 </body>
 </html>
