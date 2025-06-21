@@ -23,6 +23,7 @@
             --gray: #666666;
             --accent: #BB86FC;
             --card-bg: #121212;
+            --card-border: #252525;
         }
         
         * {
@@ -122,99 +123,147 @@
             padding: 3rem 0;
         }
         
-        /* Spotlight Post */
-        .spotlight {
+        /* Blog Grid Layout */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             margin: 3rem 0;
         }
         
-        .spotlight-card {
+        /* Blog Post Cards */
+        .blog-card {
             background: var(--card-bg);
-            border-left: 4px solid var(--accent);
+            border-radius: 8px;
             padding: 2rem;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid var(--card-border);
             transition: all 0.3s ease;
-            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .spotlight-card:hover {
+        .blog-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(187, 134, 252, 0.2);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.1);
+            border-color: var(--primary);
         }
         
-        /* Previous Posts */
-        .previous-posts {
-            margin: 3rem 0;
-        }
-        
-        .post-card {
-            background: var(--card-bg);
-            border-left: 3px solid var(--primary);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0 6px 6px 0;
-            transition: all 0.3s ease;
+        .blog-card.spotlight {
+            border-left: 4px solid var(--accent);
+            position: relative;
             overflow: hidden;
         }
         
-        .post-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.1);
+        .blog-card.spotlight::before {
+            content: 'FEATURED';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
         }
         
         .post-date {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .post-category {
+            background: rgba(187, 134, 252, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
         }
         
         .post-title {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--light);
+            line-height: 1.3;
         }
         
-        .post-content {
+        .post-excerpt {
             color: var(--gray);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
         
         .read-more {
-            color: var(--accent);
-            cursor: pointer;
             display: inline-flex;
             align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
         .read-more:hover {
             color: var(--primary);
+            gap: 0.7rem;
         }
         
-        .read-more i {
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .hidden-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .hidden-content.visible {
-            max-height: 2000px;
-        }
-        
-        .hidden-content-inner {
+        /* Post Content */
+        .post-content {
             padding-top: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s ease 0.2s;
+            color: var(--light);
+            line-height: 1.7;
         }
         
-        .hidden-content.visible .hidden-content-inner {
-            opacity: 1;
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .post-content h3 {
+            color: var(--accent);
+            margin: 2rem 0 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .post-content h4 {
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .post-content ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .post-content strong {
+            color: var(--light);
+        }
+        
+        .notice-box {
+            background: rgba(187, 134, 252, 0.1);
+            padding: 1.5rem;
+            border-left: 3px solid var(--accent);
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .notice-box h4 {
+            color: var(--accent);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
         }
         
         /* Footer */
@@ -232,12 +281,16 @@
             justify-content: center;
             gap: 1.5rem;
             margin: 1rem 0;
+            flex-wrap: wrap;
         }
         
         .footer-links a {
             color: var(--gray);
             text-decoration: none;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .footer-links a:hover {
@@ -264,15 +317,16 @@
         /* Responsive */
         @media (max-width: 768px) {
             .container {
-                padding: 1rem;
+                padding: 0 1rem;
             }
             
             .nav-links {
                 gap: 0.8rem;
+                padding: 0 1rem;
             }
             
             .nav-link {
-                padding: 0.5rem;
+                padding: 0.5rem 0.8rem;
                 font-size: 0.9rem;
             }
             
@@ -280,8 +334,12 @@
                 padding: 2rem 0;
             }
             
-            .spotlight-card, .post-card {
+            .blog-card {
                 padding: 1.5rem;
+            }
+            
+            .post-title {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -310,173 +368,171 @@
     
     <!-- Blog Content -->
     <main class="container blog-content">
-        <!-- Spotlight Post -->
-        <section class="spotlight animate__animated animate__fadeIn">
-    <div class="spotlight-card">
-        
-<div class="post-date">June 4th, 2025</div>
-<h2 class="post-title">AetherX Rewrite Announcement</h2>
-<div class="post-content">
-    <p>We're making major changes to ensure AetherX's future stability. Here's what you need to know.</p>
-</div>
-<div class="hidden-content">
-    <div class="hidden-content-inner">
-        <p style="margin-bottom: 1.5rem;">This wasn't an easy decision, but it's necessary for AetherX's long-term health.</p>
-        
-        <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">Why We're Rewriting</h3>
-        <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-            <li style="margin-bottom: 0.5rem;"><strong>Version Conflicts</strong> - The bot was running two different codebases simultaneously</li>
-            <li style="margin-bottom: 0.5rem;"><strong>Bug Accumulation</strong> - Months of patches created unstable spaghetti code</li>
-            <li style="margin-bottom: 0.5rem;"><strong>Database Issues</strong> - Frequent lockups made features unreliable</li>
-        </ul>
-        
-        <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">What This Means</h3>
-        <h4 style="margin: 1.25rem 0 0.75rem;">Temporary Changes:</h4>
-        <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-            <li style="margin-bottom: 0.5rem;"><strong>Dabloons Reset</strong> - The old database is retired (all balances cleared)</li>
-            <li style="margin-bottom: 0.5rem;"><strong>Feature Availability</strong> - Some commands temporarily disabled</li>
-        </ul>
-        
-        <h4 style="margin: 1.25rem 0 0.75rem;">Future Improvements:</h4>
-        <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-            <li style="margin-bottom: 0.5rem;"><strong>Fresh Start</strong> - Everyone will receive 500,000 Dabloons when the new database launches</li>
-            <li style="margin-bottom: 0.5rem;"><strong>Reliability</strong> - New infrastructure to prevent lockups</li>
-            <li style="margin-bottom: 0.5rem;"><strong>Feature Preservation</strong> - All your favorite commands will return</li>
-        </ul>
-        
-        <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">Development Timeline</h3>
-        <p style="margin-bottom: 1.5rem;">This will be a <strong>slow, careful process</strong>. We'll post regular updates about:</p>
-        <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-            <li style="margin-bottom: 0.5rem;">Completed feature migrations</li>
-            <li style="margin-bottom: 0.5rem;">Database progress</li>
-            <li style="margin-bottom: 0.5rem;">Upcoming changes</li>
-        </ul>
-        
-        <div style="background: rgba(187, 134, 252, 0.1); padding: 1rem; border-left: 3px solid var(--accent); margin: 1.5rem 0;">
-            <h4 style="margin: 0 0 0.5rem; color: var(--accent);">Our Promise to You</h4>
-            <p style="margin-bottom: 0;">We're committed to maintaining AetherX's spirit while fixing its foundation. Some implementations may change as we discover better solutions during the rewrite.</p>
-        </div>
-        
-        <p style="margin-bottom: 1.5rem;">Thank you for your patience during this transition. The result will be worth the wait.</p>
-        
-        <p style="margin-bottom: 0;">- The AetherX Development Team</p>
-    </div>
-</div>
-<div class="read-more">
-    Read full post <i class="fas fa-arrow-down"></i>
-</div>
-        <!-- Previous Posts -->
-        <section class="previous-posts animate__animated animate__fadeIn animate__delay-1s">
-            <h2><i class="fas fa-history"></i> Previous Updates</h2>
+        <div class="blog-grid">
+            <!-- Featured Post -->
+            <article class="blog-card spotlight animate__animated animate__fadeIn">
+                <div class="post-meta">
+                    <span class="post-date"><i class="far fa-calendar-alt"></i> June 4th, 2025</span>
+                    <span class="post-category">Announcement</span>
+                </div>
+                <h2 class="post-title">AetherX Rewrite Announcement</h2>
+                <p class="post-excerpt">We're making major changes to ensure AetherX's future stability. Here's what you need to know.</p>
+                <a href="#rewrite-announcement" class="read-more">
+                    Read full post <i class="fas fa-arrow-right"></i>
+                </a>
+                
+                <div id="rewrite-announcement" class="post-content">
+                    <p>This wasn't an easy decision, but it's necessary for AetherX's long-term health.</p>
+                    
+                    <h3>Why We're Rewriting</h3>
+                    <ul>
+                        <li><strong>Version Conflicts</strong> - The bot was running two different codebases simultaneously</li>
+                        <li><strong>Bug Accumulation</strong> - Months of patches created unstable spaghetti code</li>
+                        <li><strong>Database Issues</strong> - Frequent lockups made features unreliable</li>
+                    </ul>
+                    
+                    <h3>What This Means</h3>
+                    <h4>Temporary Changes:</h4>
+                    <ul>
+                        <li><strong>Dabloons Reset</strong> - The old database is retired (all balances cleared)</li>
+                        <li><strong>Feature Availability</strong> - Some commands temporarily disabled</li>
+                    </ul>
+                    
+                    <h4>Future Improvements:</h4>
+                    <ul>
+                        <li><strong>Fresh Start</strong> - Everyone will receive 500,000 Dabloons when the new database launches</li>
+                        <li><strong>Reliability</strong> - New infrastructure to prevent lockups</li>
+                        <li><strong>Feature Preservation</strong> - All your favorite commands will return</li>
+                    </ul>
+                    
+                    <h3>Development Timeline</h3>
+                    <p>This will be a <strong>slow, careful process</strong>. We'll post regular updates about:</p>
+                    <ul>
+                        <li>Completed feature migrations</li>
+                        <li>Database progress</li>
+                        <li>Upcoming changes</li>
+                    </ul>
+                    
+                    <div class="notice-box">
+                        <h4>Our Promise to You</h4>
+                        <p>We're committed to maintaining AetherX's spirit while fixing its foundation. Some implementations may change as we discover better solutions during the rewrite.</p>
+                    </div>
+                    
+                    <p>Thank you for your patience during this transition. The result will be worth the wait.</p>
+                    
+                    <p>- The AetherX Development Team</p>
+                </div>
+            </article>
 
-<div class="post-date">April 1st, 2025</div>
-        <h2 class="post-title">Gambler's Paradise Has Arrived!</h2>
-        <div class="post-content">
-            <p>We're excited to finally bring you the update you (might) have been waiting for!</p>
-        </div>
-        <div class="hidden-content">
-            <div class="hidden-content-inner">
-                <p style="margin-bottom: 1.5rem;">After extensive testing and development, we're proud to release one of our biggest updates yet!</p>
-                
-                <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">New Features</h3>
-                <p style="margin-bottom: 1.5rem;">Here's what's new in the Gambler's Paradise update:</p>
-                
-                <h4 style="margin: 1.25rem 0 0.75rem;">Casino Minigames:</h4>
-                <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-                    <li style="margin-bottom: 0.5rem;"><strong>Blackjack</strong> - Try your luck against the dealer</li>
-                    <li style="margin-bottom: 0.5rem;"><strong>Slots</strong> - Spin to win with our colorful slot machine</li>
-                    <li style="margin-bottom: 0.5rem;"><strong>Highlow</strong> - Guess if the next number will be higher or lower</li>
-                </ul>
-                
-                <h4 style="margin: 1.25rem 0 0.75rem;">Currency System:</h4>
-                <p style="margin-bottom: 1.5rem;">All games now use our new <strong>Dabloons</strong> currency system. Earn them, spend them, and try not to lose them all!</p>
-                
-                <h4 style="margin: 1.25rem 0 0.75rem;">Profile Improvements:</h4>
-                <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-                    <li style="margin-bottom: 0.5rem;">Completely reworked <strong>$profile</strong> command</li>
-                    <li>New toggle function to customize your profile display</li>
-                </ul>
-                
-                <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">Important News</h3>
-                <p style="margin-bottom: 1.5rem;">During testing, we unfortunately corrupted our database and had to perform a complete reset. This means <strong>everyone starts fresh</strong> with their Dabloons balance. We apologize for any inconvenience!</p>
-                
-                <h4 style="margin: 1.25rem 0 0.75rem;">Highlow Multiplier:</h4>
-                <p style="margin-bottom: 1.5rem;">As promised in our last update, we've added the streak multiplier to Highlow! Each correct guess increases your multiplier (up to 5x), giving you bigger rewards until you guess incorrectly.</p>
-                
-                <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">Coming Soon</h3>
-                <p style="margin-bottom: 1rem;">Our next minigame in development:</p>
-                <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-                    <li><strong>Roulette</strong> - Coming in a future update</li>
-                </ul>
-                
-                <p style="margin-bottom: 1.5rem;">Keep an eye on our updates section for more information about upcoming features!</p>
-                
-                <div style="background: rgba(187, 134, 252, 0.1); padding: 1rem; border-left: 3px solid var(--accent); margin: 1.5rem 0;">
-                    <h4 style="margin: 0 0 0.5rem; color: var(--accent);">Beta Testers Still Wanted!</h4>
-                    <p style="margin-bottom: 0;">We're still looking for Beta Testers to help test new commands and minigames. Join our support server and let the team know if you're interested!</p>
+            <!-- Previous Posts -->
+            <article class="blog-card animate__animated animate__fadeIn animate__delay-1s">
+                <div class="post-meta">
+                    <span class="post-date"><i class="far fa-calendar-alt"></i> April 1st, 2025</span>
+                    <span class="post-category">Update</span>
                 </div>
+                <h2 class="post-title">Gambler's Paradise Has Arrived!</h2>
+                <p class="post-excerpt">We're excited to finally bring you the update you (might) have been waiting for!</p>
+                <a href="#gamblers-paradise" class="read-more">
+                    Read full post <i class="fas fa-arrow-right"></i>
+                </a>
                 
-                <p style="margin-bottom: 0;">Happy gaming, and may the odds be ever in your favor!</p>
-            </div>
-        </div>
-        <div class="read-more">
-            Read full post <i class="fas fa-arrow-down"></i>
-        </div>
-            
-<div class="post-date">March 28th, 2025</div>
-        <h2 class="post-title">The Upcoming Update</h2>
-        <div class="post-content">
-            <p>We're excited to share our development plans for the next update.</p>
-        </div>
-        <div class="hidden-content">
-            <div class="hidden-content-inner">
-                <p>Here's what you can expect in our upcoming release:</p>
-                
-                <p style="margin-bottom: 1.5rem;">This will be a bit of a mess so please bear with us.</p>
-                
-                <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">Gambler's Paradise Update</h3>
-                <p style="margin-bottom: 1.5rem;">We're calling our next update the "Gambler's Paradise". If you don't understand what that means, it means that our current minigames are being updated to make use of our new currency system. The Dabloons you have can be used for Slots and Blackjack right now. In the future there will be more options.</p>
-                
-                <h4 style="margin: 1.25rem 0 0.75rem;">Current Work:</h4>
-                <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-                    <li style="margin-bottom: 0.5rem;">Fixing bugs with the Blackjack minigame</li>
-                    <li style="margin-bottom: 0.5rem;">Improving visual presentation</li>
-                    <li>Slots will be addressed after Dabloon bugs are fixed</li>
-                </ul>
-                
-                <h4 style="margin: 1.25rem 0 0.75rem;">Music Commands:</h4>
-                <p style="margin-bottom: 1.5rem;">The music commands are still broken but we're working on those soon (there's just too much to do all at once). We'll post another blog once we have that sorted out - don't worry!</p>
-                
-                <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">Earning Dabloons</h3>
-                <p style="margin-bottom: 1rem;">We're already thinking of ways for our users to earn Dabloons:</p>
-                <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
-                    <li style="margin-bottom: 0.5rem;">Chatting (1 Dabloon per message every 10 seconds - passive income)</li>
-                    <li style="margin-bottom: 0.5rem;">Highlow minigame (10 Dabloons per win)</li>
-                    <li>Leveling up (being reworked)</li>
-                </ul>
-                
-                <h4 style="margin: 1.25rem 0 0.75rem;">Level System:</h4>
-                <p style="margin-bottom: 1.5rem;">We're aware the level system is a little bit broken and we're working on it (databases aren't the easiest you know).</p>
-                
-                <h3 style="margin: 1.5rem 0 1rem; color: var(--accent);">Future Possibilities</h3>
-                <p style="margin-bottom: 1.5rem;">If we had the ability to have a backend for the website for a dynamic end, we'd start making a dashboard to allow more control over AetherX. Unfortunately we don't have any funds to work with so we're doing what we can.</p>
-                
-                <p style="margin-bottom: 1.5rem;">Anyways, have a great rest of your day/night!</p>
-                
-                <div style="background: rgba(187, 134, 252, 0.1); padding: 1rem; border-left: 3px solid var(--accent); margin: 1.5rem 0;">
-                    <h4 style="margin: 0 0 0.5rem; color: var(--accent);">Beta Testers Wanted!</h4>
-                    <p style="margin-bottom: 0;">We're looking for Beta Testers to help test new commands or minigames. Join the support server and let one of the developers or staff know!</p>
-                </div>                    </div>
+                <div id="gamblers-paradise" class="post-content">
+                    <p>After extensive testing and development, we're proud to release one of our biggest updates yet!</p>
+                    
+                    <h3>New Features</h3>
+                    <p>Here's what's new in the Gambler's Paradise update:</p>
+                    
+                    <h4>Casino Minigames:</h4>
+                    <ul>
+                        <li><strong>Blackjack</strong> - Try your luck against the dealer</li>
+                        <li><strong>Slots</strong> - Spin to win with our colorful slot machine</li>
+                        <li><strong>Highlow</strong> - Guess if the next number will be higher or lower</li>
+                    </ul>
+                    
+                    <h4>Currency System:</h4>
+                    <p>All games now use our new <strong>Dabloons</strong> currency system. Earn them, spend them, and try not to lose them all!</p>
+                    
+                    <h4>Profile Improvements:</h4>
+                    <ul>
+                        <li>Completely reworked <strong>$profile</strong> command</li>
+                        <li>New toggle function to customize your profile display</li>
+                    </ul>
+                    
+                    <h3>Important News</h3>
+                    <p>During testing, we unfortunately corrupted our database and had to perform a complete reset. This means <strong>everyone starts fresh</strong> with their Dabloons balance. We apologize for any inconvenience!</p>
+                    
+                    <h4>Highlow Multiplier:</h4>
+                    <p>As promised in our last update, we've added the streak multiplier to Highlow! Each correct guess increases your multiplier (up to 5x), giving you bigger rewards until you guess incorrectly.</p>
+                    
+                    <h3>Coming Soon</h3>
+                    <p>Our next minigame in development:</p>
+                    <ul>
+                        <li><strong>Roulette</strong> - Coming in a future update</li>
+                    </ul>
+                    
+                    <p>Keep an eye on our updates section for more information about upcoming features!</p>
+                    
+                    <div class="notice-box">
+                        <h4>Beta Testers Still Wanted!</h4>
+                        <p>We're still looking for Beta Testers to help test new commands and minigames. Join our support server and let the team know if you're interested!</p>
+                    </div>
+                    
+                    <p>Happy gaming, and may the odds be ever in your favor!</p>
                 </div>
-                <div class="read-more">
-                    Read full post <i class="fas fa-arrow-down"></i>
+            </article>
+
+            <article class="blog-card animate__animated animate__fadeIn animate__delay-2s">
+                <div class="post-meta">
+                    <span class="post-date"><i class="far fa-calendar-alt"></i> March 28th, 2025</span>
+                    <span class="post-category">Preview</span>
                 </div>
-            </div>
-        </section>
-        
-            
-            </div>
-        </section>
+                <h2 class="post-title">The Upcoming Update</h2>
+                <p class="post-excerpt">We're excited to share our development plans for the next update.</p>
+                <a href="#upcoming-update" class="read-more">
+                    Read full post <i class="fas fa-arrow-right"></i>
+                </a>
+                
+                <div id="upcoming-update" class="post-content">
+                    <p>Here's what you can expect in our upcoming release:</p>
+                    
+                    <p>This will be a bit of a mess so please bear with us.</p>
+                    
+                    <h3>Gambler's Paradise Update</h3>
+                    <p>We're calling our next update the "Gambler's Paradise". If you don't understand what that means, it means that our current minigames are being updated to make use of our new currency system. The Dabloons you have can be used for Slots and Blackjack right now. In the future there will be more options.</p>
+                    
+                    <h4>Current Work:</h4>
+                    <ul>
+                        <li>Fixing bugs with the Blackjack minigame</li>
+                        <li>Improving visual presentation</li>
+                        <li>Slots will be addressed after Dabloon bugs are fixed</li>
+                    </ul>
+                    
+                    <h4>Music Commands:</h4>
+                    <p>The music commands are still broken but we're working on those soon (there's just too much to do all at once). We'll post another blog once we have that sorted out - don't worry!</p>
+                    
+                    <h3>Earning Dabloons</h3>
+                    <p>We're already thinking of ways for our users to earn Dabloons:</p>
+                    <ul>
+                        <li>Chatting (1 Dabloon per message every 10 seconds - passive income)</li>
+                        <li>Highlow minigame (10 Dabloons per win)</li>
+                        <li>Leveling up (being reworked)</li>
+                    </ul>
+                    
+                    <h4>Level System:</h4>
+                    <p>We're aware the level system is a little bit broken and we're working on it (databases aren't the easiest you know).</p>
+                    
+                    <h3>Future Possibilities</h3>
+                    <p>If we had the ability to have a backend for the website for a dynamic end, we'd start making a dashboard to allow more control over AetherX. Unfortunately we don't have any funds to work with so we're doing what we can.</p>
+                    
+                    <p>Anyways, have a great rest of your day/night!</p>
+                    
+                    <div class="notice-box">
+                        <h4>Beta Testers Wanted!</h4>
+                        <p>We're looking for Beta Testers to help test new commands or minigames. Join the support server and let one of the developers or staff know!</p>
+                    </div>
+                </div>
+            </article>
+        </div>
     </main>
     
     <!-- Footer -->
@@ -494,18 +550,22 @@
     </footer>
 
     <script>
-        // Toggle hidden content
+        // Toggle post content visibility
         document.querySelectorAll('.read-more').forEach(button => {
-            button.addEventListener('click', function() {
-                const content = this.previousElementSibling;
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const content = document.querySelector(targetId);
                 const icon = this.querySelector('i');
                 
                 content.classList.toggle('visible');
                 
                 if (content.classList.contains('visible')) {
                     this.innerHTML = 'Show less <i class="fas fa-arrow-up"></i>';
+                    content.style.maxHeight = content.scrollHeight + 'px';
                 } else {
-                    this.innerHTML = 'Read more <i class="fas fa-arrow-down"></i>';
+                    this.innerHTML = 'Read full post <i class="fas fa-arrow-right"></i>';
+                    content.style.maxHeight = null;
                 }
                 
                 // Smooth icon rotation
@@ -524,7 +584,7 @@
                 });
             }, { threshold: 0.1 });
             
-            document.querySelectorAll('.post-card').forEach(card => {
+            document.querySelectorAll('.blog-card').forEach(card => {
                 observer.observe(card);
             });
         });
