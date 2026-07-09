@@ -537,14 +537,34 @@
             </div>
         </section>
         
-        <section class="legal-section animate__animated animate__fadeIn">
-            <h2>Legal</h2>
-            <div class="legal-tabs">
-                <div class="legal-tab active" onclick="openTab(event, 'tos')">Terms of Service</div>
-                <div class="legal-tab" onclick="openTab(event, 'privacy')">Privacy Policy</div>
-                <div class="legal-tab" onclick="openTab(event, 'credits')">Credits</div>
-            </div>
-            
+<style>
+    .legal-section {
+        text-align: center;
+    }
+    
+    .legal-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .legal-tab {
+        cursor: pointer;
+        padding: 10px 20px;
+    }
+    
+    .legal-tab.active {
+    }
+</style>
+
+<section class="legal-section animate__animated animate__fadeIn">
+    <h2>Legal</h2>
+    <div class="legal-tabs">
+        <div class="legal-tab active" onclick="openTab(event, 'tos')">Terms of Service</div>
+        <div class="legal-tab" onclick="openTab(event, 'privacy')">Privacy Policy</div>
+        <div class="legal-tab" onclick="openTab(event, 'credits')">Credits</div>
+    </div>            
             <div id="tos" class="legal-content active">
                 <h3>Terms of Service</h3>
                 <p>By using our bot, you agree to these terms:</p>
